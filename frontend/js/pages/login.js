@@ -1,5 +1,12 @@
 import { showToast } from '../utils/dom.js';
 
+const AUTH_KEY = 'dorm_auth_session';
+
+// If already logged in, redirect to dashboard
+if (sessionStorage.getItem(AUTH_KEY)) {
+    window.location.href = 'index.html';
+}
+
 document.getElementById('login-form').addEventListener('submit', (e) => {
     e.preventDefault();
     const btn = e.target.querySelector('button[type="submit"]');
@@ -13,6 +20,11 @@ document.getElementById('login-form').addEventListener('submit', (e) => {
         const pass = document.getElementById('password').value;
         
         if (user.toLowerCase() === 'admin' && pass === '123456') {
+            // Save authentication session
+            sessionStorage.setItem(AUTH_KEY, JSON.stringify({
+                user: user.toLowerCase(),
+                loginTime: new Date().toISOString()
+            }));
             showToast('Đăng nhập thành công! Đang chuyển hướng...', 'success');
             setTimeout(() => window.location.href = 'index.html', 800);
         } else {

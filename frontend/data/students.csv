@@ -1,26 +1,26 @@
-id,name,room,major,status
-SV1001,Nguyễn Văn A,101,CNTT,Đang ở
-SV1002,Trần Thị B,102,Kế toán,Mới
-SV1003,Lê Văn C,101,Cơ khí,Đang ở
-SV1004,Phạm Thị D,201,Thiết kế,Đã rời đi
-SV1005,Đặng Quang Huy,102,Luật,Đang ở
-SV1006,Bùi Trọng Tín,101,CNTT,Đang ở
-SV1007,Ngô Phương Thảo,202,Ngôn ngữ Anh,Mới
-SV1008,Hoàng Thu Trà,201,Quản trị KD,Đang ở
-SV1009,Vũ Hoàng My,202,Kế toán,Đang ở
-SV1010,Trịnh Xuân Trường,301,CNTT,Mới
-SV1011,Đỗ Nhật Minh,301,Logistics,Đang ở
-SV1012,Lý Thảo Vy,302,Thiết kế,Mới
-SV1013,Phạm Hùng Anh,302,Kế Toán,Đang ở
-SV1014,Hồ Tuấn Kiệt,203,Du Lịch,Đang ở
-SV1015,Cao Thanh Lịch,203,Marketing,Đang ở
-SV1016,Võ Minh Thắng,203,Điện tử,Mới
-SV1017,Đinh Tuấn Cảnh,401,Môi Trường,Đang ở
-SV1018,Phùng Bảo Ngọc,401,Sư phạm,Đang ở
-SV1019,Trần Bích Đào,402,QT Nhân lực,Mới
-SV1020,Mai Thu Cúc,402,Dược,Đang ở
-SV1021,Nguyễn Tấn Đạt,403,Kỹ Thuật Ô Tô,Đang ở
-SV1022,Châu Minh Long,403,Cơ Điện Tử,Đang ở
-SV1023,Hoàng Hữu Lộc,501,CNTT,Mới
-SV1024,Lâm Tuấn Dũng,501,Toán Học,Đang ở
-SV1025,Chu Bảo Nhi,502,Diễn Viên,Đang ở
+id,name,room,major,phone,email,status
+SV1001,Nguyễn Văn A,101,CNTT,0901234001,sv1001@ktx.edu.vn,Đang ở
+SV1002,Trần Thị B,102,Kế toán,0901234002,sv1002@ktx.edu.vn,Mới
+SV1003,Lê Văn C,101,Cơ khí,0901234003,sv1003@ktx.edu.vn,Đang ở
+SV1004,Phạm Thị D,201,Thiết kế,0901234004,sv1004@ktx.edu.vn,Đã rời đi
+SV1005,Đặng Quang Huy,102,Luật,0901234005,sv1005@ktx.edu.vn,Đang ở
+SV1006,Bùi Trọng Tín,101,CNTT,0901234006,sv1006@ktx.edu.vn,Đang ở
+SV1007,Ngô Phương Thảo,202,Ngôn ngữ Anh,0901234007,sv1007@ktx.edu.vn,Mới
+SV1008,Hoàng Thu Trà,201,Quản trị KD,0901234008,sv1008@ktx.edu.vn,Đang ở
+SV1009,Vũ Hoàng My,202,Kế toán,0901234009,sv1009@ktx.edu.vn,Đang ở
+SV1010,Trịnh Xuân Trường,301,CNTT,0901234010,sv1010@ktx.edu.vn,Mới
+SV1011,Đỗ Nhật Minh,301,Logistics,0901234011,sv1011@ktx.edu.vn,Đang ở
+SV1012,Lý Thảo Vy,302,Thiết kế,0901234012,sv1012@ktx.edu.vn,Mới
+SV1013,Phạm Hùng Anh,302,Kế Toán,0901234013,sv1013@ktx.edu.vn,Đang ở
+SV1014,Hồ Tuấn Kiệt,203,Du Lịch,0901234014,sv1014@ktx.edu.vn,Đang ở
+SV1015,Cao Thanh Lịch,203,Marketing,0901234015,sv1015@ktx.edu.vn,Đang ở
+SV1016,Võ Minh Thắng,203,Điện tử,0901234016,sv1016@ktx.edu.vn,Mới
+SV1017,Đinh Tuấn Cảnh,401,Môi Trường,0901234017,sv1017@ktx.edu.vn,Đang ở
+SV1018,Phùng Bảo Ngọc,401,Sư phạm,0901234018,sv1018@ktx.edu.vn,Đang ở
+SV1019,Trần Bích Đào,402,QT Nhân lực,0901234019,sv1019@ktx.edu.vn,Mới
+SV1020,Mai Thu Cúc,402,Dược,0901234020,sv1020@ktx.edu.vn,Đang ở
+SV1021,Nguyễn Tấn Đạt,403,Kỹ Thuật Ô Tô,0901234021,sv1021@ktx.edu.vn,Đang ở
+SV1022,Châu Minh Long,403,Cơ Điện Tử,0901234022,sv1022@ktx.edu.vn,Đang ở
+SV1023,Hoàng Hữu Lộc,501,CNTT,0901234023,sv1023@ktx.edu.vn,Mới
+SV1024,Lâm Tuấn Dũng,501,Toán Học,0901234024,sv1024@ktx.edu.vn,Đang ở
+SV1025,Chu Bảo Nhi,502,Diễn Viên,0901234025,sv1025@ktx.edu.vn,Đang ở

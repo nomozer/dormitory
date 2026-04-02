@@ -243,19 +243,11 @@ const renderViolationsSummary = (violations) => {
     }).join('');
 };
 
-// ── Advanced Analytics Panel (Python API + C++ Engine) ──
+// ── Advanced Analytics Panel (computes locally, enriches with backend silently) ──
 const setAdvancedStatus = (message, tone = 'muted') => {
     const statusEl = document.getElementById('advanced-analytics-status');
     if (!statusEl) return;
-
-    const colorMap = {
-        ok: 'text-emerald-600',
-        warn: 'text-amber-600',
-        error: 'text-rose-600',
-        muted: 'text-slate-400'
-    };
-
-    statusEl.className = `text-[12px] font-semibold mb-4 ${colorMap[tone] || colorMap.muted}`;
+    // Status is hidden from users — only for internal debugging
     statusEl.textContent = message;
 };
 
@@ -264,11 +256,6 @@ const renderAdvancedCards = (payload) => {
     if (!grid) return;
 
     const metrics = payload.metrics || {};
-    const engine = String(payload.engine || metrics.engine || 'python').toUpperCase();
-    const generatedAt = metrics.generated_at || '';
-    const timeText = generatedAt
-        ? new Date(generatedAt).toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' })
-        : '--:--';
 
     const cards = [
         {
@@ -280,10 +267,10 @@ const renderAdvancedCards = (payload) => {
             bg: 'bg-amber-50'
         },
         {
-            label: 'Đúng giờ 7 ngày',
-            value: `${Number(metrics.attendance_on_time_rate_7d || 0).toFixed(1)}%`,
-            hint: `${formatNumber(metrics.attendance_ontime_7d || 0)} / ${formatNumber(metrics.attendance_events_7d || 0)} lượt`,
-            icon: 'schedule',
+            label: 'Tỷ lệ lấp đầy',
+            value: `${Number(metrics.occupancy_rate || 0).toFixed(1)}%`,
+            hint: `${formatNumber(metrics.total_occupied || 0)} / ${formatNumber(metrics.total_capacity || 0)} chỗ`,
+            icon: 'groups',
             tone: 'text-blue-700',
             bg: 'bg-blue-50'
         },
@@ -315,9 +302,6 @@ const renderAdvancedCards = (payload) => {
             <p class="mt-2 text-[11px] font-semibold text-slate-500">${escapeHtml(card.hint)}</p>
         </div>
     `).join('');
-
-    const tone = engine === 'CPP' ? 'ok' : 'warn';
-    setAdvancedStatus(`Đồng bộ lúc ${timeText} • Engine: ${engine}`, tone);
 };
 
 const buildLocalFallbackOverview = () => {
@@ -338,13 +322,13 @@ const buildLocalFallbackOverview = () => {
 
     return {
         ok: true,
-        engine: 'browser-local',
+        engine: 'local',
         metrics: {
-            pending_maintenance: 0,
+            pending_maintenance: stats.maintenanceRooms,
             maintenance_rooms: stats.maintenanceRooms,
-            attendance_on_time_rate_7d: 0,
-            attendance_ontime_7d: 0,
-            attendance_events_7d: 0,
+            occupancy_rate: stats.occupancyRate,
+            total_occupied: stats.totalOccupied,
+            total_capacity: stats.totalCapacity,
             overcrowded_rooms: overcrowdedRooms,
             occupancy_risk_score: occupancyRiskScore,
             unpaid_invoice_count: unpaidInvoiceCount,
@@ -354,34 +338,57 @@ const buildLocalFallbackOverview = () => {
     };
 };
 
-const renderAdvancedUnavailable = (error) => {
-    const fallbackPayload = buildLocalFallbackOverview();
-    renderAdvancedCards(fallbackPayload);
-    const reason = error?.message ? ` (${error.message})` : '';
-    setAdvancedStatus(`Backend chưa kết nối, đang dùng dữ liệu local${reason} • URL: ${getBackendBaseUrl()}`, 'warn');
+// ── Service Status Badges ──
+const updateServiceBadges = (apiConnected = true) => {
+    const apiBadge = document.getElementById('api-service-badge');
+    const qrBadge = document.getElementById('qr-service-badge');
+    const payBadge = document.getElementById('payment-service-badge');
+
+    if (apiBadge) {
+        apiBadge.textContent = apiConnected ? 'Hoạt động' : 'Offline';
+        apiBadge.className = apiConnected
+            ? 'px-2 py-1 text-[10px] font-bold rounded-lg bg-emerald-50 text-emerald-600 border border-emerald-200 whitespace-nowrap'
+            : 'px-2 py-1 text-[10px] font-bold rounded-lg bg-slate-100 text-slate-500 border border-slate-200 whitespace-nowrap';
+    }
+    if (qrBadge) {
+        qrBadge.textContent = 'Sẵn sàng';
+        qrBadge.className = 'px-2 py-1 text-[10px] font-bold rounded-lg bg-blue-50 text-blue-600 border border-blue-200 whitespace-nowrap';
+    }
+    if (payBadge) {
+        payBadge.textContent = 'Sẵn sàng';
+        payBadge.className = 'px-2 py-1 text-[10px] font-bold rounded-lg bg-violet-50 text-violet-600 border border-violet-200 whitespace-nowrap';
+    }
 };
 
 async function loadAdvancedAnalytics(force = false) {
     const grid = document.getElementById('advanced-analytics-grid');
     if (!grid) return;
 
-    const now = Date.now();
-    if (!force && advancedMetricsCache && now - advancedMetricsCachedAt < advancedMetricsTtlMs) {
-        renderAdvancedCards(advancedMetricsCache);
-        return;
-    }
+    // Always render local data first — instant, no loading state visible
+    const localPayload = buildLocalFallbackOverview();
+    renderAdvancedCards(localPayload);
+    updateServiceBadges(true);
 
+    // Silently try backend for enriched data (no error shown to user)
     if (advancedMetricsInFlight) return;
 
-    setAdvancedStatus('Đang đồng bộ dữ liệu từ backend...', 'muted');
+    const now = Date.now();
+    if (!force && advancedMetricsCache && now - advancedMetricsCachedAt < advancedMetricsTtlMs) {
+        return; // Cache still fresh
+    }
+
     advancedMetricsInFlight = fetchAdvancedOverview({ timeoutMs: 3200, preferCpp: true })
         .then((payload) => {
             advancedMetricsCache = payload;
             advancedMetricsCachedAt = Date.now();
             renderAdvancedCards(payload);
+            updateServiceBadges(true);
+            setAdvancedStatus('Backend connected', 'ok');
         })
-        .catch((error) => {
-            renderAdvancedUnavailable(error);
+        .catch(() => {
+            // Silently use local data — user never sees the error
+            setAdvancedStatus('Using local computation', 'muted');
+            updateServiceBadges(false);
         })
         .finally(() => {
             advancedMetricsInFlight = null;

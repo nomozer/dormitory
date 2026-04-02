@@ -4,6 +4,13 @@ import { showToast } from './utils/dom.js';
 import { debounce, escapeHtml } from './utils/fp.js';
 import { formatCurrency, formatDate } from './utils/formatters.js';
 
+// ── Auth Guard ──
+const AUTH_KEY = 'dorm_auth_session';
+const isLoginPage = window.location.pathname.endsWith('login.html');
+if (!isLoginPage && !sessionStorage.getItem(AUTH_KEY)) {
+    window.location.href = 'login.html';
+}
+
 // ── Dark Mode (runs before DOM to prevent flash) ──
 const THEME_KEY = 'dorm_theme';
 

@@ -206,24 +206,65 @@
                 </div>
             </div>
 
-            <!-- Advanced Analytics (Python + C++) -->
+            <!-- Advanced Operations Center -->
             <section class="bg-white rounded-[20px] p-6 shadow-sm border border-slate-100 animate-slide-up delay-[600ms] mb-8">
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-3">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5">
                     <div>
                         <h3 class="font-bold text-slate-800 text-[15px]">Trung tâm vận hành nâng cao</h3>
-                        <p class="text-[12px] text-slate-500 mt-1">Đồng bộ dữ liệu từ API Python và analytics engine C++.</p>
+                        <p class="text-[12px] text-slate-500 mt-1">Phân tích dữ liệu thời gian thực từ hệ thống.</p>
                     </div>
                     <button id="advanced-refresh-btn" class="px-3 py-2 rounded-xl text-[12px] font-bold border border-slate-200 text-slate-600 hover:bg-slate-50 transition-colors inline-flex items-center gap-1.5 w-fit">
                         <span class="material-symbols-outlined text-[1rem]">refresh</span>
                         Làm mới số liệu
                     </button>
                 </div>
-                <p id="advanced-analytics-status" class="text-[12px] font-semibold text-slate-400 mb-4">Chờ kết nối backend...</p>
-                <div id="advanced-analytics-grid" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
+                <!-- Hidden status - only for internal sync, not shown to users -->
+                <p id="advanced-analytics-status" class="hidden"></p>
+                <div id="advanced-analytics-grid" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 mb-6">
                     <div class="skeleton skeleton-card"></div>
                     <div class="skeleton skeleton-card"></div>
                     <div class="skeleton skeleton-card"></div>
                     <div class="skeleton skeleton-card"></div>
+                </div>
+
+                <!-- Backend Services Status -->
+                <div class="border-t border-slate-100 pt-5">
+                    <p class="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-3">Dịch vụ tích hợp</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4" id="backend-services-grid">
+                        <!-- API Gateway -->
+                        <div class="flex items-center gap-3 bg-slate-50 rounded-xl p-4 border border-slate-100">
+                            <div class="w-10 h-10 rounded-xl bg-emerald-50 flex items-center justify-center shrink-0">
+                                <span class="material-symbols-outlined text-emerald-600 text-[1.2rem]">dns</span>
+                            </div>
+                            <div class="min-w-0 flex-1">
+                                <p class="text-[13px] font-bold text-slate-800 leading-tight">API Gateway</p>
+                                <p class="text-[11px] text-slate-500 mt-0.5">Xử lý logic & dữ liệu</p>
+                            </div>
+                            <span id="api-service-badge" class="px-2 py-1 text-[10px] font-bold rounded-lg bg-emerald-50 text-emerald-600 border border-emerald-200 whitespace-nowrap">Hoạt động</span>
+                        </div>
+                        <!-- QR Check-in Service -->
+                        <div class="flex items-center gap-3 bg-slate-50 rounded-xl p-4 border border-slate-100">
+                            <div class="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center shrink-0">
+                                <span class="material-symbols-outlined text-blue-600 text-[1.2rem]">qr_code_scanner</span>
+                            </div>
+                            <div class="min-w-0 flex-1">
+                                <p class="text-[13px] font-bold text-slate-800 leading-tight">QR Check-in</p>
+                                <p class="text-[11px] text-slate-500 mt-0.5">Điểm danh bằng mã QR</p>
+                            </div>
+                            <span id="qr-service-badge" class="px-2 py-1 text-[10px] font-bold rounded-lg bg-blue-50 text-blue-600 border border-blue-200 whitespace-nowrap">Sẵn sàng</span>
+                        </div>
+                        <!-- Payment Service -->
+                        <div class="flex items-center gap-3 bg-slate-50 rounded-xl p-4 border border-slate-100">
+                            <div class="w-10 h-10 rounded-xl bg-violet-50 flex items-center justify-center shrink-0">
+                                <span class="material-symbols-outlined text-violet-600 text-[1.2rem]">account_balance_wallet</span>
+                            </div>
+                            <div class="min-w-0 flex-1">
+                                <p class="text-[13px] font-bold text-slate-800 leading-tight">Payment Gateway</p>
+                                <p class="text-[11px] text-slate-500 mt-0.5">Thanh toán trực tuyến</p>
+                            </div>
+                            <span id="payment-service-badge" class="px-2 py-1 text-[10px] font-bold rounded-lg bg-violet-50 text-violet-600 border border-violet-200 whitespace-nowrap">Sẵn sàng</span>
+                        </div>
+                    </div>
                 </div>
             </section>
 

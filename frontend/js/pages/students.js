@@ -14,6 +14,23 @@ let currentPage = 1;
 let pageSize = 15;
 let initialLoad = true;
 
+// ── Sync room occupied counts from students (single source of truth) ──
+const syncRoomOccupancy = (students, rooms) => {
+    const countMap = {};
+    students.forEach((sv) => {
+        const r = String(sv.room || '');
+        if (r && r !== 'Chưa xếp') {
+            countMap[r] = (countMap[r] || 0) + 1;
+        }
+    });
+    return rooms.map((room) => {
+        const newOccupied = countMap[String(room.id)] || 0;
+        const newStatus = room.status === 'Đang bảo trì' ? 'Đang bảo trì'
+            : newOccupied >= room.capacity ? 'Đã đầy' : 'Còn trống';
+        return { ...room, occupied: newOccupied, status: newStatus };
+    });
+};
+
 // ── Validation ──
 const PHONE_RE = /^(0[1-9]\d{8})?$/;
 const EMAIL_RE = /^$|^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -364,7 +381,9 @@ export function setupEventListeners() {
                 room: data.room || 'Chưa xếp',
                 status: 'Mới'
             };
-            updateState({ students: [newSv, ...state.students] });
+            const newStudents = [newSv, ...state.students];
+            const updatedRooms = syncRoomOccupancy(newStudents, state.rooms);
+            updateState({ students: newStudents, rooms: updatedRooms });
             populateFilterDropdowns();
             showToast(`Đã thêm sinh viên ${newSv.name} thành công!`, 'success');
         });
@@ -421,6 +440,7 @@ export function setupEventListeners() {
                     return;
                 }
 
+                const newRoom = data.room || student.room;
                 const updatedStudents = state.students.map((s) =>
                     s.id === id ? {
                         ...s,
@@ -428,10 +448,14 @@ export function setupEventListeners() {
                         major: data.major.trim(),
                         phone: (data.phone || '').replace(/\s/g, ''),
                         email: (data.email || '').trim(),
-                        room: data.room || s.room
+                        room: newRoom
                     } : s
                 );
-                updateState({ students: updatedStudents });
+                // Sync room occupancy if room changed
+                const updatedRooms = String(newRoom) !== String(student.room)
+                    ? syncRoomOccupancy(updatedStudents, state.rooms)
+                    : state.rooms;
+                updateState({ students: updatedStudents, rooms: updatedRooms });
                 populateFilterDropdowns();
                 showToast('Cập nhật thông tin thành công!', 'success');
             }
@@ -449,7 +473,8 @@ export function setupEventListeners() {
                 );
                 if (confirmed) {
                     const nextStudents = state.students.filter((s) => s.id !== id);
-                    updateState({ students: nextStudents });
+                    const updatedRooms = syncRoomOccupancy(nextStudents, state.rooms);
+                    updateState({ students: nextStudents, rooms: updatedRooms });
                     populateFilterDropdowns();
                     showToast('Đã xóa sinh viên khỏi hệ thống!', 'success');
                 }

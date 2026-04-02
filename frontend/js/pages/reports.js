@@ -3,6 +3,9 @@ import { showToast } from '../utils/dom.js';
 import { formatCurrency, formatCompactRevenue, formatDate, exportToExcel } from '../utils/formatters.js';
 import { escapeHtml } from '../utils/fp.js';
 
+// ── Shared fee status set (consistent across modules) ──
+const completedFeeStatuses = new Set(['Đã thanh toán', 'Đã thu']);
+
 // ── KPI Cards ──
 const renderKPICards = (state) => {
     const container = document.getElementById('report-kpi-cards');
@@ -14,7 +17,7 @@ const renderKPICards = (state) => {
     const contracts = state.contracts || [];
     const violations = state.violations || [];
 
-    const totalRevenue = fees.filter((f) => f.status === 'Đã thanh toán').reduce((s, f) => s + (f.amount || 0), 0);
+    const totalRevenue = fees.filter((f) => completedFeeStatuses.has(f.status)).reduce((s, f) => s + (f.amount || 0), 0);
     const totalCapacity = rooms.reduce((s, r) => s + (r.capacity || 0), 0);
     const totalOccupied = rooms.reduce((s, r) => s + (r.occupied || 0), 0);
     const occRate = totalCapacity > 0 ? Math.round((totalOccupied / totalCapacity) * 100) : 0;
@@ -61,8 +64,8 @@ const renderRevenueChart = (state) => {
     }
 
     const data = months.map((m) => {
-        const paid = fees.filter((f) => f.month === m && f.status === 'Đã thanh toán').reduce((s, f) => s + (f.amount || 0), 0);
-        const unpaid = fees.filter((f) => f.month === m && f.status !== 'Đã thanh toán').reduce((s, f) => s + (f.amount || 0), 0);
+        const paid = fees.filter((f) => f.month === m && completedFeeStatuses.has(f.status)).reduce((s, f) => s + (f.amount || 0), 0);
+        const unpaid = fees.filter((f) => f.month === m && !completedFeeStatuses.has(f.status)).reduce((s, f) => s + (f.amount || 0), 0);
         return { month: m, paid, unpaid, total: paid + unpaid };
     });
 
@@ -288,8 +291,8 @@ const buildExportRows = (type, state) => {
     }
 
     // 'all' — combined summary
-    const totalPaid = (state.fees || []).filter((f) => f.status === 'Đã thanh toán').reduce((s, f) => s + (f.amount || 0), 0);
-    const totalUnpaid = (state.fees || []).filter((f) => f.status !== 'Đã thanh toán').reduce((s, f) => s + (f.amount || 0), 0);
+    const totalPaid = (state.fees || []).filter((f) => completedFeeStatuses.has(f.status)).reduce((s, f) => s + (f.amount || 0), 0);
+    const totalUnpaid = (state.fees || []).filter((f) => !completedFeeStatuses.has(f.status)).reduce((s, f) => s + (f.amount || 0), 0);
     return [
         ['BÁO CÁO TỔNG HỢP KÝ TÚC XÁ'], ['Ngày xuất', timestamp], [],
         ['CHỈ SỐ', 'GIÁ TRỊ'],

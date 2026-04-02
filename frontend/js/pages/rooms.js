@@ -3,6 +3,9 @@ import { showToast, showPrompt, showConfirm } from '../utils/dom.js';
 import { formatCurrency } from '../utils/formatters.js';
 import { escapeHtml } from '../utils/fp.js';
 
+// ── Shared fee status set (consistent with dashboard.js) ──
+const completedFeeStatuses = new Set(['Đã thanh toán', 'Đã thu']);
+
 // ── Local UI State ──
 let currentBuilding = null;
 let searchQuery = '';
@@ -104,8 +107,8 @@ function showRoomDetail(roomId) {
     const contracts = getContractOf(state.contracts, roomId);
     const violations = getViolationsOf(state.violations, roomId);
 
-    const paidFees = fees.filter((f) => f.status === 'Đã thanh toán');
-    const unpaidFees = fees.filter((f) => f.status !== 'Đã thanh toán');
+    const paidFees = fees.filter((f) => completedFeeStatuses.has(f.status));
+    const unpaidFees = fees.filter((f) => !completedFeeStatuses.has(f.status));
     const totalPaid = paidFees.reduce((s, f) => s + (f.amount || 0), 0);
     const totalUnpaid = unpaidFees.reduce((s, f) => s + (f.amount || 0), 0);
     const percent = room.capacity ? Math.round((room.occupied / room.capacity) * 100) : 0;
@@ -145,7 +148,7 @@ function showRoomDetail(roomId) {
     const feesHtml = fees.length === 0
         ? '<div class="py-4 text-center text-slate-400 text-[13px] font-medium">Chưa có hóa đơn</div>'
         : fees.slice(0, 10).map((f) => {
-            const isPaid = f.status === 'Đã thanh toán';
+            const isPaid = completedFeeStatuses.has(f.status);
             return `
             <div class="flex items-center justify-between py-2.5 border-b border-slate-100/60 last:border-0">
                 <div class="flex items-center gap-2.5">
