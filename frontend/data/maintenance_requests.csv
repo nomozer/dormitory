@@ -1,0 +1,9 @@
+id,room,category,priority,reportedAt,status,description,assignedTo,resolvedAt
+MR2026-001,101,Điện,High,2026-03-20,Mới,Đèn hành lang tầng 1 không sáng,,
+MR2026-002,202,Nước,Medium,2026-03-21,Đang xử lý,Rò rỉ vòi lavabo phòng 202,Tổ kỹ thuật A,
+MR2026-003,301,Thiết bị,Low,2026-03-18,Open,Quạt trần phát tiếng ồn,,
+MR2026-004,401,An toàn,High,2026-03-16,In Progress,Cửa thoát hiểm bị kẹt,Tổ an ninh,
+MR2026-005,102,Internet,Medium,2026-03-10,Hoàn tất,Mạng WiFi chập chờn,Tổ hạ tầng,2026-03-12
+MR2026-006,203,Nội thất,Low,2026-02-28,Đã đóng,Tủ đồ bị bung bản lề,Tổ hậu cần,2026-03-01
+MR2026-007,502,Điện,High,2026-03-22,Mới,Ổ cắm bị cháy đen,,
+MR2026-008,302,Nước,Medium,2026-03-19,Đang xử lý,Toilet xả yếu,Tổ kỹ thuật B,

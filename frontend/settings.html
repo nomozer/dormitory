@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DormManager - Cài đặt</title>
+    <!-- Inject Tailwind via CDN -->
+    <script src="tailwind-config.js"></script>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-background text-main font-sans antialiased">
+    <div class="app-container">
+      <!-- Sidebar injected here -->
+      <div id="sidebar-container" style="display: contents"></div>
+
+      <div class="main-content">
+        <!-- Header injected here -->
+        <div id="header-container" style="display: contents"></div>
+
+        <!-- Page Content -->
+        <main class="p-6 md:p-8 animate-fade-in max-w-4xl mx-auto pb-20">
+          <div class="mb-8 animate-slide-up">
+            <h2 class="text-2xl font-lexend font-bold tracking-tight text-slate-800">Cài đặt hệ thống</h2>
+            <p class="text-[14px] font-medium text-slate-500 mt-1">Cấu hình tham số và quản lý cơ sở dữ liệu cục bộ.</p>
+          </div>
+
+          <div class="grid grid-cols-1 gap-6 animate-slide-up delay-100">
+
+            <!-- Profile Card -->
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+                <div class="p-6 border-b border-slate-100">
+                    <h3 class="font-lexend font-bold text-slate-800 flex items-center gap-2 text-[16px]">
+                        <span class="material-symbols-outlined text-[20px] text-blue-500">person</span> Hồ sơ quản trị viên
+                    </h3>
+                </div>
+                <div class="p-6">
+                    <div class="flex flex-col md:flex-row gap-6">
+                        <!-- Avatar -->
+                        <div class="flex flex-col items-center gap-3">
+                            <div class="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center text-primary text-2xl font-black border-2 border-primary/20" id="profile-avatar">AD</div>
+                            <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Quản trị viên</span>
+                        </div>
+                        <!-- Form -->
+                        <form class="flex-1 grid grid-cols-1 md:grid-cols-2 gap-4" id="profile-form">
+                            <div>
+                                <label class="block text-[12px] font-bold text-slate-500 mb-1">Họ và tên</label>
+                                <input type="text" name="adminName" id="profile-name" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-[13px] focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all font-medium text-slate-800" placeholder="Nguyễn Quản Trị" />
+                            </div>
+                            <div>
+                                <label class="block text-[12px] font-bold text-slate-500 mb-1">Email</label>
+                                <input type="email" name="adminEmail" id="profile-email" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-[13px] focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all font-medium text-slate-800" placeholder="admin@ktx.edu.vn" />
+                            </div>
+                            <div>
+                                <label class="block text-[12px] font-bold text-slate-500 mb-1">Số điện thoại</label>
+                                <input type="tel" name="adminPhone" id="profile-phone" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-[13px] focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all font-medium text-slate-800" placeholder="0901234567" />
+                            </div>
+                            <div>
+                                <label class="block text-[12px] font-bold text-slate-500 mb-1">Chức vụ</label>
+                                <input type="text" name="adminRole" id="profile-role" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-[13px] focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all font-medium text-slate-800" placeholder="Quản lý KTX" />
+                            </div>
+                            <div class="md:col-span-2">
+                                <button type="submit" class="bg-primary hover:bg-[#7a967e] text-white px-5 py-2.5 rounded-xl text-[13px] font-bold transition-all shadow-sm flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-[16px]">save</span> Lưu hồ sơ
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Appearance Settings -->
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+                <div class="p-6 border-b border-slate-100">
+                    <h3 class="font-lexend font-bold text-slate-800 flex items-center gap-2 text-[16px]">
+                        <span class="material-symbols-outlined text-[20px] text-primary">palette</span> Giao diện
+                    </h3>
+                </div>
+                <div class="p-6 flex items-center justify-between hover:bg-slate-50/50 transition-colors border-b border-slate-100">
+                    <div>
+                        <h4 class="font-bold text-[14px] text-slate-800">Chế độ tối (Dark Mode)</h4>
+                        <p class="text-[13px] text-slate-500 mt-1 max-w-sm">Chuyển giao diện sang tông màu tối, giảm mỏi mắt khi làm việc ban đêm.</p>
+                    </div>
+                    <label class="relative inline-flex items-center cursor-pointer">
+                      <input type="checkbox" id="setting-dark-mode" class="sr-only peer">
+                      <div class="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary shadow-inner"></div>
+                    </label>
+                </div>
+                <div class="p-6 flex items-center justify-between hover:bg-slate-50/50 transition-colors">
+                    <div>
+                        <h4 class="font-bold text-[14px] text-slate-800">Thu gọn Sidebar mặc định</h4>
+                        <p class="text-[13px] text-slate-500 mt-1 max-w-sm">Sidebar sẽ tự động thu hẹp thành icon khi mở trang.</p>
+                    </div>
+                    <label class="relative inline-flex items-center cursor-pointer">
+                      <input type="checkbox" id="setting-collapse-sidebar" class="sr-only peer">
+                      <div class="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary shadow-inner"></div>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Data & Storage Info -->
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden animate-slide-up delay-200">
+                <div class="p-6 border-b border-slate-100">
+                    <h3 class="font-lexend font-bold text-slate-800 flex items-center gap-2 text-[16px]">
+                        <span class="material-symbols-outlined text-[20px] text-violet-500">analytics</span> Dữ liệu & Hệ thống
+                    </h3>
+                </div>
+                <!-- Data Stats -->
+                <div class="p-6 border-b border-slate-100">
+                    <div class="grid grid-cols-2 md:grid-cols-5 gap-3" id="data-stats-grid"></div>
+                </div>
+                <!-- Storage Size -->
+                <div class="p-6 border-b border-slate-100 flex items-center justify-between">
+                    <div>
+                        <h4 class="font-bold text-[14px] text-slate-800">Dung lượng localStorage</h4>
+                        <p class="text-[13px] text-slate-500 mt-1" id="storage-size-label">Đang tính...</p>
+                    </div>
+                    <div class="w-32 h-2.5 bg-slate-100 rounded-full overflow-hidden">
+                        <div id="storage-bar" class="h-full bg-primary rounded-full transition-all duration-500" style="width:0%"></div>
+                    </div>
+                </div>
+                <!-- Export / Import JSON -->
+                <div class="p-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <div class="flex-1">
+                        <h4 class="font-bold text-[14px] text-slate-800">Sao lưu & Khôi phục dữ liệu (JSON)</h4>
+                        <p class="text-[13px] text-slate-500 mt-1 max-w-lg">Xuất toàn bộ dữ liệu ra file JSON để sao lưu, hoặc nhập lại từ bản sao lưu trước đó.</p>
+                    </div>
+                    <div class="flex gap-2">
+                        <button id="btn-export-json" class="bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 px-4 py-2 rounded-xl text-[13px] font-bold transition-all shadow-sm flex items-center gap-2">
+                            <span class="material-symbols-outlined text-[16px]">download</span> Xuất JSON
+                        </button>
+                        <label class="bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 px-4 py-2 rounded-xl text-[13px] font-bold transition-all shadow-sm flex items-center gap-2 cursor-pointer">
+                            <span class="material-symbols-outlined text-[16px]">upload</span> Nhập JSON
+                            <input type="file" id="btn-import-json" accept=".json" class="hidden" />
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Danger Zone -->
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden animate-slide-up delay-300">
+                <div class="p-6 border-b border-slate-100">
+                    <h3 class="font-lexend font-bold text-slate-800 flex items-center gap-2 text-[16px]">
+                        <span class="material-symbols-outlined text-[20px] text-rose-500">warning</span> Vùng nguy hiểm
+                    </h3>
+                </div>
+                <div class="p-6 flex flex-col md:flex-row md:items-center justify-between gap-4 hover:bg-slate-50/50 transition-colors border-b border-slate-100">
+                    <div class="flex-1">
+                        <h4 class="font-bold text-[14px] text-slate-800">Khôi phục dữ liệu gốc (Factory Reset)</h4>
+                        <p class="text-[13px] text-slate-500 mt-1 max-w-lg">Xóa toàn bộ dữ liệu hiện tại và nạp lại từ file CSV gốc. Không thể hoàn tác!</p>
+                    </div>
+                    <button id="btn-factory-reset" class="bg-rose-50 text-rose-600 hover:bg-rose-600 hover:text-white border border-rose-200 hover:border-transparent px-4 py-2 rounded-xl text-[13px] font-bold transition-all shadow-sm flex items-center gap-2 whitespace-nowrap">
+                        <span class="material-symbols-outlined text-[18px]">device_reset</span> Khôi phục gốc
+                    </button>
+                </div>
+                <div class="p-6 flex flex-col md:flex-row md:items-center justify-between gap-4 hover:bg-slate-50/50 transition-colors">
+                    <div class="flex-1">
+                        <h4 class="font-bold text-[14px] text-slate-800">Xóa Cache cũ</h4>
+                        <p class="text-[13px] text-slate-500 mt-1 max-w-lg">Xóa các khóa localStorage rác từ phiên bản cũ.</p>
+                    </div>
+                    <button id="btn-clear-cache" class="bg-white border border-slate-200 text-slate-600 hover:bg-slate-100 px-4 py-2 rounded-xl text-[13px] font-bold transition-all shadow-sm flex items-center gap-2 whitespace-nowrap">
+                        <span class="material-symbols-outlined text-[18px]">cleaning_services</span> Dọn dẹp
+                    </button>
+                </div>
+            </div>
+
+            <!-- System Info -->
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden animate-slide-up delay-400">
+                <div class="p-6 border-b border-slate-100">
+                    <h3 class="font-lexend font-bold text-slate-800 flex items-center gap-2 text-[16px]">
+                        <span class="material-symbols-outlined text-[20px] text-slate-500">info</span> Thông tin hệ thống
+                    </h3>
+                </div>
+                <div class="p-6" id="system-info-grid"></div>
+            </div>
+
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <!-- Core Scripts -->
+    <script type="module" src="js/main.js"></script>
+    <script type="module" src="js/pages/settings.js"></script>
+  </body>
+</html>

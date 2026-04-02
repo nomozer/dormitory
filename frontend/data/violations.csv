@@ -1,0 +1,9 @@
+id,studentName,studentId,room,reason,points,date,status
+VP001,Trần Thị B,SV1002,102,Về muộn sau 23h,-5,2025-09-10,Đã giải quyết
+VP002,Nguyễn Văn A,SV1001,101,Gây ồn ào giờ nghỉ trưa,-10,2025-09-15,Đang xử lý
+VP003,Trịnh Xuân Trường,SV1010,301,Sử quyết thiết bị điện sai quy định,-15,2025-09-18,Chưa xử lý
+VP004,Phạm Thị D,SV1004,201,Mất chìa khóa phòng,-5,2025-08-30,Đã giải quyết
+VP005,Lâm Tuấn Dũng,SV1024,501,Hút thuốc trong phòng,-20,2025-09-21,Đang xử lý
+VP006,Đinh Tuấn Cảnh,SV1017,401,Cố ý làm hỏng quạt gió,-30,2025-09-22,Chưa xử lý
+VP007,Chu Bảo Nhi,SV1025,502,Bỏ trực sinh khu vực hành lang,-5,2025-09-20,Đã giải quyết
+VP008,Phạm Hùng Anh,SV1013,302,Đưa người ngoài vào KTX,-25,2025-09-19,Chưa xử lý

@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DormManager - Quản lý Phòng ở</title>
+    <!-- Inject Tailwind via CDN -->
+    <script src="tailwind-config.js"></script>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-background text-main font-sans antialiased">
+    <div class="app-container">
+      <!-- Sidebar injected here -->
+      <div id="sidebar-container" style="display: contents"></div>
+
+      <div class="main-content">
+        <!-- Header injected here -->
+        <div id="header-container" style="display: contents"></div>
+
+        <!-- Page Content -->
+        <main class="p-6 md:p-8 animate-fade-in">
+          <div class="flex items-center justify-between mb-8 animate-slide-up">
+            <div>
+              <h2
+                class="text-2xl font-lexend font-bold tracking-tight text-main"
+              >
+                Quản lý Phòng ở
+              </h2>
+              <p class="text-sm text-muted mt-1">
+                Danh sách phòng và trạng thái cư trú.
+              </p>
+            </div>
+            <button
+              id="add-room-btn"
+              class="bg-primary hover:bg-[#1046b6] text-white px-4 py-2 rounded-xl font-bold flex items-center gap-2 transition-all shadow-primary"
+            >
+              <span class="material-symbols-outlined text-[1.25rem]">add</span>
+              Thêm phòng mới
+            </button>
+          </div>
+
+          <!-- Stats Summary -->
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6 animate-slide-up delay-100" id="room-stats-bar">
+            <!-- Populated via JS -->
+          </div>
+
+          <!-- Filter Bar -->
+          <div class="bg-white rounded-2xl border border-slate-100 p-4 mb-6 animate-slide-up delay-200">
+            <div class="flex flex-wrap items-center gap-3">
+              <!-- Search -->
+              <div class="relative flex-1 min-w-[180px] max-w-xs">
+                <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+                <input type="text" id="search-room-input" placeholder="Tìm số phòng, loại phòng..." class="w-full pl-10 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-[13px] focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all font-medium text-slate-700 placeholder-slate-400" />
+              </div>
+              <!-- Status Filter -->
+              <div class="relative">
+                <select id="filter-room-status" class="pl-3 pr-8 py-2 bg-slate-50 border border-slate-200 rounded-xl text-[13px] font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-primary/20 appearance-none cursor-pointer transition-all">
+                  <option value="">Tất cả trạng thái</option>
+                  <option value="Còn trống">Còn trống</option>
+                  <option value="Đã đầy">Đã đầy</option>
+                  <option value="Đang bảo trì">Đang bảo trì</option>
+                </select>
+                <span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none text-[1rem]">expand_more</span>
+              </div>
+              <!-- Type Filter -->
+              <div class="relative">
+                <select id="filter-room-type" class="pl-3 pr-8 py-2 bg-slate-50 border border-slate-200 rounded-xl text-[13px] font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-primary/20 appearance-none cursor-pointer transition-all">
+                  <option value="">Tất cả loại phòng</option>
+                  <option value="Phòng Tiêu Chuẩn">Phòng Tiêu Chuẩn</option>
+                  <option value="Phòng Cao Cấp">Phòng Cao Cấp</option>
+                  <option value="Phòng VIP">Phòng VIP</option>
+                </select>
+                <span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none text-[1rem]">expand_more</span>
+              </div>
+              <!-- Floor Filter -->
+              <div class="relative">
+                <select id="filter-room-floor" class="pl-3 pr-8 py-2 bg-slate-50 border border-slate-200 rounded-xl text-[13px] font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-primary/20 appearance-none cursor-pointer transition-all">
+                  <option value="">Tất cả tầng</option>
+                </select>
+                <span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none text-[1rem]">expand_more</span>
+              </div>
+              <!-- Room count -->
+              <div class="ml-auto text-[12px] font-semibold text-slate-400" id="room-count-label"></div>
+            </div>
+          </div>
+
+          <!-- BUILDING TABS -->
+          <div class="flex items-center gap-6 mb-6 border-b border-slate-200 overflow-x-auto scrollbar-none" id="building-tabs">
+            <!-- Tabs injected via JS -->
+          </div>
+
+          <div
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+            id="rooms-grid"
+          >
+            <!-- Populated via JS -->
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <!-- Core Scripts -->
+    <script type="module" src="js/main.js"></script>
+    <script type="module" src="js/pages/rooms.js"></script>
+  </body>
+</html>

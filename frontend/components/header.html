@@ -1,0 +1,79 @@
+<header
+  class="h-[60px] bg-white/70 backdrop-blur-md border-b border-[#e2e8f0] sticky top-0 z-40 flex items-center justify-between px-6 shrink-0 transition-all duration-300 w-full"
+  id="main-header"
+>
+  <div class="flex items-center gap-4">
+    <!-- Search -->
+    <div class="relative hidden sm:block" id="search-wrapper">
+      <span
+        class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-[1.25rem]"
+        >search</span
+      >
+      <input
+        type="text"
+        id="global-search-input"
+        placeholder="Tìm kiếm sinh viên, phòng... (Ctrl+K)"
+        autocomplete="off"
+        class="pl-10 pr-10 py-2 w-[320px] bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+      />
+      <button
+        id="search-clear-btn"
+        class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 transition-colors hidden"
+        title="Xóa"
+      >
+        <span class="material-symbols-outlined text-[1.1rem]">close</span>
+      </button>
+      <!-- Search Results Dropdown -->
+      <div
+        id="search-results-dropdown"
+        class="search-dropdown hidden absolute top-full left-0 mt-2 w-[400px] max-h-[420px] overflow-y-auto bg-white border border-slate-200 rounded-xl shadow-lg z-50"
+      ></div>
+    </div>
+  </div>
+  <div class="flex items-center gap-2">
+    <!-- Dark Mode Toggle -->
+    <button
+      class="theme-toggle"
+      id="theme-toggle-btn"
+      title="Chuyển giao diện sáng/tối"
+    >
+      <span class="material-symbols-outlined text-[1.25rem] icon-sun">light_mode</span>
+      <span class="material-symbols-outlined text-[1.25rem] icon-moon">dark_mode</span>
+    </button>
+    <!-- Notifications -->
+    <div class="relative" id="notification-wrapper">
+      <button
+        class="w-10 h-10 rounded-full flex items-center justify-center text-slate-500 hover:bg-slate-100 transition-colors relative"
+        id="notification-btn"
+      >
+        <span class="material-symbols-outlined">notifications</span>
+        <span
+          id="notification-badge"
+          class="absolute top-1.5 right-1.5 min-w-[18px] h-[18px] bg-danger text-white text-[10px] font-bold rounded-full flex items-center justify-center ring-2 ring-white hidden"
+        >0</span>
+      </button>
+      <!-- Notification Panel -->
+      <div
+        id="notification-panel"
+        class="notification-panel hidden absolute right-0 top-full mt-2 w-[380px] max-h-[480px] bg-white border border-slate-200 rounded-xl shadow-lg z-50 overflow-hidden"
+      >
+        <div class="flex items-center justify-between px-4 py-3 border-b border-slate-100">
+          <h3 class="text-sm font-semibold text-slate-800">Thông báo</h3>
+          <button id="notification-mark-read" class="text-xs text-primary hover:underline">Đánh dấu đã đọc</button>
+        </div>
+        <div id="notification-list" class="overflow-y-auto max-h-[400px] divide-y divide-slate-100"></div>
+        <div id="notification-empty" class="hidden py-8 text-center text-sm text-slate-400">
+          <span class="material-symbols-outlined text-3xl mb-2 block">notifications_off</span>
+          Không có thông báo mới
+        </div>
+      </div>
+    </div>
+    <!-- Settings -->
+    <a
+      href="settings.html"
+      class="w-10 h-10 rounded-full flex items-center justify-center text-slate-500 hover:bg-slate-100 transition-colors"
+    >
+      <span class="material-symbols-outlined">settings</span>
+    </a>
+  </div>
+</header>

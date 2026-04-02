@@ -1,0 +1,11 @@
+# Runtime-only artifacts
+*
+!.gitignore
+!tmp/
+!logs/
+
+tmp/*
+!tmp/.gitkeep
+
+logs/*
+!logs/.gitkeep

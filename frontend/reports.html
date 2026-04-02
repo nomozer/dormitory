@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DormManager - Báo cáo</title>
+    <!-- Inject Tailwind via CDN -->
+    <script src="tailwind-config.js"></script>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-background text-main font-sans antialiased">
+    <div class="app-container">
+      <!-- Sidebar injected here -->
+      <div id="sidebar-container" style="display: contents"></div>
+
+      <div class="main-content">
+        <!-- Header injected here -->
+        <div id="header-container" style="display: contents"></div>
+
+        <!-- Page Content -->
+        <main class="p-6 md:p-8 animate-fade-in pb-20">
+          <!-- Header -->
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8 animate-slide-up">
+            <div>
+              <h2 class="text-2xl font-lexend font-bold tracking-tight text-slate-800">
+                Báo cáo & Thống kê
+              </h2>
+              <p class="text-[14px] font-medium text-slate-500 mt-1">
+                Tổng hợp dữ liệu ký túc xá — doanh thu, phòng ở, hợp đồng, vi phạm.
+              </p>
+            </div>
+            <div class="flex gap-3">
+              <div class="relative">
+                <select id="export-type-select" class="pl-3 pr-8 py-2.5 bg-white border border-slate-200 rounded-xl text-[13px] font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-primary/20 appearance-none cursor-pointer">
+                  <option value="all">Xuất tất cả</option>
+                  <option value="students">Danh sách sinh viên</option>
+                  <option value="rooms">Danh sách phòng</option>
+                  <option value="fees">Hóa đơn & Thu phí</option>
+                  <option value="contracts">Hợp đồng</option>
+                  <option value="violations">Vi phạm</option>
+                </select>
+                <span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none text-[1rem]">expand_more</span>
+              </div>
+              <button id="export-excel-btn" class="bg-primary hover:bg-[#7a967e] text-white px-5 py-2.5 rounded-xl text-[13px] font-bold flex items-center gap-2 transition-all shadow-md shadow-primary/20">
+                <span class="material-symbols-outlined text-[1.15rem]">download</span>
+                Xuất Excel
+              </button>
+            </div>
+          </div>
+
+          <!-- KPI Cards -->
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 animate-slide-up delay-100" id="report-kpi-cards"></div>
+
+          <!-- Charts Row -->
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+            <!-- Monthly Revenue Chart -->
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 animate-slide-up delay-200">
+              <div class="flex items-center justify-between mb-5">
+                <div>
+                  <h3 class="text-sm font-bold text-slate-700">Doanh thu theo tháng</h3>
+                  <p class="text-[11px] text-slate-400 mt-0.5">6 tháng gần nhất</p>
+                </div>
+                <div class="w-8 h-8 rounded-lg bg-emerald-50 flex items-center justify-center">
+                  <span class="material-symbols-outlined text-emerald-600 text-[1rem]">bar_chart</span>
+                </div>
+              </div>
+              <div id="revenue-chart" class="flex items-end gap-2 h-[180px]"></div>
+              <div id="revenue-chart-labels" class="flex gap-2 mt-2"></div>
+            </div>
+
+            <!-- Room Occupancy by Building -->
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 animate-slide-up delay-300">
+              <div class="flex items-center justify-between mb-5">
+                <div>
+                  <h3 class="text-sm font-bold text-slate-700">Lấp đầy theo tòa nhà</h3>
+                  <p class="text-[11px] text-slate-400 mt-0.5">Tỷ lệ phần trăm</p>
+                </div>
+                <div class="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center">
+                  <span class="material-symbols-outlined text-blue-600 text-[1rem]">apartment</span>
+                </div>
+              </div>
+              <div id="building-occupancy-chart" class="space-y-4"></div>
+            </div>
+          </div>
+
+          <!-- Second Charts Row -->
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+            <!-- Contract Status Donut -->
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 animate-slide-up delay-200">
+              <div class="flex items-center justify-between mb-5">
+                <div>
+                  <h3 class="text-sm font-bold text-slate-700">Trạng thái hợp đồng</h3>
+                  <p class="text-[11px] text-slate-400 mt-0.5">Phân bổ theo trạng thái</p>
+                </div>
+                <div class="w-8 h-8 rounded-lg bg-amber-50 flex items-center justify-center">
+                  <span class="material-symbols-outlined text-amber-600 text-[1rem]">description</span>
+                </div>
+              </div>
+              <div class="flex items-center gap-6">
+                <div id="contract-donut-chart" class="shrink-0"></div>
+                <div id="contract-donut-legend" class="flex-1 space-y-2"></div>
+              </div>
+            </div>
+
+            <!-- Fee Type Breakdown -->
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 animate-slide-up delay-300">
+              <div class="flex items-center justify-between mb-5">
+                <div>
+                  <h3 class="text-sm font-bold text-slate-700">Phân bổ khoản thu</h3>
+                  <p class="text-[11px] text-slate-400 mt-0.5">Theo loại phí</p>
+                </div>
+                <div class="w-8 h-8 rounded-lg bg-violet-50 flex items-center justify-center">
+                  <span class="material-symbols-outlined text-violet-600 text-[1rem]">pie_chart</span>
+                </div>
+              </div>
+              <div id="fee-type-breakdown" class="space-y-3"></div>
+            </div>
+          </div>
+
+          <!-- Violations Table -->
+          <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden animate-slide-up delay-400">
+            <div class="px-6 py-4 border-b border-slate-100 flex items-center justify-between">
+              <h3 class="text-sm font-bold text-slate-700 flex items-center gap-2">
+                <span class="material-symbols-outlined text-rose-500 text-[1.1rem]">gavel</span>
+                Danh sách vi phạm
+              </h3>
+              <span class="text-[11px] font-bold text-slate-400" id="violation-count-label"></span>
+            </div>
+            <div class="overflow-x-auto">
+              <table class="w-full text-left border-collapse min-w-[800px]">
+                <thead>
+                  <tr>
+                    <th class="bg-[#fafbfc] text-slate-500 font-bold text-[12px] px-6 py-4 border-b border-slate-100">PHÒNG</th>
+                    <th class="bg-[#fafbfc] text-slate-500 font-bold text-[12px] px-6 py-4 border-b border-slate-100">SINH VIÊN</th>
+                    <th class="bg-[#fafbfc] text-slate-500 font-bold text-[12px] px-6 py-4 border-b border-slate-100">NGÀY</th>
+                    <th class="bg-[#fafbfc] text-slate-500 font-bold text-[12px] px-6 py-4 border-b border-slate-100">LÝ DO</th>
+                    <th class="bg-[#fafbfc] text-slate-500 font-bold text-[12px] px-6 py-4 border-b border-slate-100 text-right">TRẠNG THÁI</th>
+                  </tr>
+                </thead>
+                <tbody id="rep-violations" class="divide-y divide-slate-100/80"></tbody>
+              </table>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <!-- Core Scripts -->
+    <script type="module" src="js/main.js"></script>
+    <script type="module" src="js/pages/reports.js"></script>
+  </body>
+</html>

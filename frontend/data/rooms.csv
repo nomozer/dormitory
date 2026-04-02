@@ -1,0 +1,16 @@
+id,type,capacity,occupied,floor,building,status
+101,Phòng Tiêu Chuẩn,6,3,1,Tòa A,Còn trống
+102,Phòng Cao Cấp,4,2,1,Tòa A,Còn trống
+201,Phòng VIP,2,1,2,Tòa A,Còn trống
+202,Phòng Tiêu Chuẩn,6,2,2,Tòa B,Còn trống
+203,Phòng Tiêu Chuẩn,6,3,2,Tòa A,Còn trống
+301,Phòng VIP,2,2,3,Tòa B,Đã đầy
+302,Phòng Cao Cấp,4,2,3,Tòa C,Còn trống
+401,Phòng Tiêu Chuẩn,8,2,4,Tòa C,Còn trống
+402,Phòng VIP,2,2,4,Tòa B,Đã đầy
+403,Phòng Cao Cấp,4,2,4,Tòa A,Còn trống
+501,Phòng Tiêu Chuẩn,6,2,5,Tòa C,Còn trống
+502,Phòng VIP,2,1,5,Tòa B,Còn trống
+601,Phòng Tiêu Chuẩn,8,0,6,Tòa C,Đang bảo trì
+602,Phòng VIP,2,0,6,Tòa A,Đang bảo trì
+603,Phòng Cao Cấp,4,0,6,Tòa B,Còn trống

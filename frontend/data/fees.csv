@@ -1,0 +1,40 @@
+id,room,type,amount,month,status
+GD101-09,101,Tiền phòng,2500000,09/2025,Đã thanh toán
+GD102-09,102,Tiền phòng + Dịch vụ,3200000,09/2025,Chưa thanh toán
+GD201-09,201,Tiền phòng VIP,4500000,09/2025,Đã thanh toán
+GD202-09,202,Tiền phòng,2500000,09/2025,Đã thanh toán
+GD301-09,301,Tiền phòng VIP,5500000,09/2025,Chưa thanh toán
+GD302-09,302,Tiền phòng,3200000,09/2025,Đã thanh toán
+GD401-09,401,Tiền phòng,1500000,09/2025,Chưa thanh toán
+GD402-09,402,Tiền phòng VIP,4800000,09/2025,Đã thanh toán
+GD501-09,501,Tiền phòng + Điện nước,3150000,09/2025,Chưa thanh toán
+GD101-08,101,Phí vi phạm,200000,08/2025,Đã thanh toán
+GD203-08,203,Tiền phòng,2000000,08/2025,Đã thanh toán
+GD203-09,203,Điện & Nước,550000,09/2025,Đã thanh toán
+GD301-08,301,Phí vi phạm,500000,08/2025,Đã thanh toán
+GD403-09,403,Tiền phòng Cao Cấp,3800000,09/2025,Chưa thanh toán
+GD502-09,502,Dịch vụ giặt ủi,120000,09/2025,Đã thanh toán
+GD101-01,101,Tiền phòng,2500000,01/2026,Đã thanh toán
+GD102-01,102,Tiền phòng + Dịch vụ,3200000,01/2026,Đã thanh toán
+GD201-01,201,Tiền phòng VIP,4500000,01/2026,Đã thanh toán
+GD301-01,301,Tiền phòng VIP,5500000,01/2026,Chưa thanh toán
+GD302-01,302,Tiền phòng,3200000,01/2026,Đã thanh toán
+GD402-01,402,Tiền phòng VIP,4800000,01/2026,Đã thanh toán
+GD101-02,101,Tiền phòng,2500000,02/2026,Đã thanh toán
+GD102-02,102,Tiền phòng + Dịch vụ,3200000,02/2026,Chưa thanh toán
+GD201-02,201,Tiền phòng VIP,4500000,02/2026,Đã thanh toán
+GD202-02,202,Tiền phòng,2500000,02/2026,Đã thanh toán
+GD301-02,301,Tiền phòng VIP,5500000,02/2026,Đã thanh toán
+GD302-02,302,Tiền phòng,3200000,02/2026,Đã thanh toán
+GD401-02,401,Điện & Nước,850000,02/2026,Đã thanh toán
+GD101-03,101,Tiền phòng,2500000,03/2026,Đã thanh toán
+GD102-03,102,Tiền phòng + Dịch vụ,3200000,03/2026,Đã thanh toán
+GD201-03,201,Tiền phòng VIP,4500000,03/2026,Đã thanh toán
+GD202-03,202,Tiền phòng,2500000,03/2026,Chưa thanh toán
+GD301-03,301,Tiền phòng VIP,5500000,03/2026,Đã thanh toán
+GD302-03,302,Tiền phòng,3200000,03/2026,Đã thanh toán
+GD401-03,401,Tiền phòng,1500000,03/2026,Đã thanh toán
+GD502-03,502,Dịch vụ giặt ủi,120000,03/2026,Đã thanh toán
+GD101-04,101,Tiền phòng,2500000,04/2026,Chưa thanh toán
+GD201-04,201,Tiền phòng VIP,4500000,04/2026,Chưa thanh toán
+GD301-04,301,Điện & Nước,780000,04/2026,Chưa thanh toán

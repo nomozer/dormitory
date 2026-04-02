@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="vi" id="html-root">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DormManager - Đăng nhập</title>
+    <!-- Inject Tailwind via CDN -->
+    <script src="tailwind-config.js"></script>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-background text-main font-sans antialiased">
+    <div class="flex items-center justify-center min-h-screen p-4">
+      <!-- Decoration background -->
+      <div
+        class="fixed top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/5 rounded-full blur-3xl pointer-events-none"
+      ></div>
+      <div
+        class="fixed bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-primary/5 rounded-full blur-3xl pointer-events-none"
+      ></div>
+
+      <div
+        class="w-full max-w-[420px] bg-white rounded-2xl shadow-[0_4px_40px_-4px_rgba(0,0,0,0.08)] border border-slate-100 p-8 sm:p-10 relative z-10 animate-fade-in"
+        style="transform: translateY(-5vh)"
+      >
+        <div class="text-center mb-8">
+          <div
+            class="w-16 h-16 bg-[#3d6b4f] rounded-2xl flex items-center justify-center text-white mx-auto shadow-lg shadow-[#3d6b4f]/20 mb-5 animate-slide-up"
+          >
+            <span class="material-symbols-outlined text-3xl">hotel</span>
+          </div>
+          <h2
+            class="text-2xl font-lexend font-bold tracking-tight text-main animate-slide-up delay-100"
+          >
+            Chào mừng trở lại
+          </h2>
+          <p
+            class="text-sm font-medium text-muted mt-2 animate-slide-up delay-100"
+          >
+            Đăng nhập để quản lý ký túc xá.
+          </p>
+        </div>
+
+        <form id="login-form" class="space-y-6 animate-slide-up delay-200">
+          <div>
+            <label class="block text-sm font-bold text-main mb-2"
+              >Tên đăng nhập / Email</label
+            >
+            <div class="relative">
+              <span
+                class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-muted text-[1.25rem]"
+                >person</span
+              >
+              <input
+                type="text"
+                id="username"
+                class="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium text-main focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+                placeholder="Nhập tên đăng nhập hoặc email"
+                required
+              />
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-sm font-bold text-main mb-2"
+              >Mật khẩu</label
+            >
+            <div class="relative">
+              <span
+                class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-muted text-[1.25rem]"
+                >lock</span
+              >
+              <input
+                type="password"
+                id="password"
+                class="w-full pl-10 pr-12 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium text-main focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+                placeholder="Nhập mật khẩu"
+                required
+              />
+              <button
+                type="button"
+                id="toggle-pwd-btn"
+                class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 focus:outline-none flex items-center justify-center p-1"
+              >
+                <span
+                  class="material-symbols-outlined text-[1.25rem] transition-all"
+                  id="toggle-pwd-icon"
+                  >visibility</span
+                >
+              </button>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between -mt-2">
+            <div class="flex items-center gap-2">
+              <input
+                type="checkbox"
+                id="remember"
+                class="w-4 h-4 rounded border-slate-300 text-primary focus:ring-primary/20 cursor-pointer"
+              />
+              <label
+                for="remember"
+                class="text-sm font-medium text-slate-500 cursor-pointer select-none"
+                >Ghi nhớ đăng nhập</label
+              >
+            </div>
+            <a
+              href="#"
+              class="text-sm font-bold text-primary hover:text-slate-700 transition-colors"
+              >Quên mật khẩu?</a
+            >
+          </div>
+
+          <button
+            type="submit"
+            class="w-full bg-primary hover:bg-slate-700 text-white py-3 rounded-xl font-bold flex items-center justify-center gap-2 transition-all shadow-primary hover:opacity-90 active:scale-[0.98]"
+          >
+            Đăng nhập
+            <span class="material-symbols-outlined text-[1.125rem]"
+              >arrow_forward</span
+            >
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div
+      id="toast-container"
+      class="fixed bottom-6 right-6 z-50 flex flex-col gap-3 pointer-events-none"
+    ></div>
+
+    <script>
+      // Apply dark mode before paint
+      (function() {
+        const t = localStorage.getItem('dorm_theme');
+        if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          document.documentElement.classList.add('dark');
+        }
+      })();
+      document.addEventListener("DOMContentLoaded", () => {
+        const pwdInput = document.getElementById("password");
+        const toggleBtn = document.getElementById("toggle-pwd-btn");
+        const toggleIcon = document.getElementById("toggle-pwd-icon");
+
+        if (toggleBtn && pwdInput) {
+          toggleBtn.addEventListener("click", () => {
+            if (pwdInput.type === "password") {
+              pwdInput.type = "text";
+              toggleIcon.textContent = "visibility_off";
+            } else {
+              pwdInput.type = "password";
+              toggleIcon.textContent = "visibility";
+            }
+          });
+        }
+      });
+    </script>
+    <script type="module" src="js/pages/login.js"></script>
+  </body>
+</html>

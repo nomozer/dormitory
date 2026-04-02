@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DormManager - Kỷ luật</title>
+    <script src="tailwind-config.js"></script>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-background text-main font-sans antialiased">
+    <div class="app-container">
+      <!-- Sidebar injected here -->
+      <div id="sidebar-container" style="display: contents"></div>
+
+      <div class="main-content">
+        <!-- Header injected here -->
+        <div id="header-container" style="display: contents"></div>
+
+        <!-- Page Content -->
+        <main class="p-6 md:p-8 animate-fade-in pb-20">
+          <!-- Header -->
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6 animate-slide-up">
+            <div>
+              <h2 class="text-2xl font-lexend font-bold tracking-tight text-slate-800">Vi phạm và Kỷ luật</h2>
+              <p class="text-[14px] font-medium text-slate-500 mt-1">Ghi nhận và xử lý các trường hợp vi phạm nội quy.</p>
+            </div>
+            <button
+              id="add-violation-btn"
+              class="bg-rose-500 hover:bg-rose-600 text-white px-5 py-2.5 rounded-xl text-[13px] font-bold flex items-center gap-2 transition-all shadow-md shadow-rose-500/20"
+            >
+              <span class="material-symbols-outlined text-[1.15rem]">warning</span>
+              Ghi nhận vi phạm
+            </button>
+          </div>
+
+          <!-- Stats Bar -->
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6 animate-slide-up delay-100" id="violation-stats-bar"></div>
+
+          <!-- Filter Bar -->
+          <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-4 mb-6 animate-slide-up delay-100">
+            <div class="flex flex-col md:flex-row gap-3 items-stretch md:items-center">
+              <!-- Search -->
+              <div class="relative flex-1 min-w-[200px]">
+                <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-[1.1rem]">search</span>
+                <input
+                  type="text"
+                  id="violation-search"
+                  placeholder="Tìm theo phòng, sinh viên, lý do..."
+                  class="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-[13px] focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all font-medium text-slate-800"
+                />
+              </div>
+              <!-- Status Filter -->
+              <div class="relative">
+                <select id="violation-filter-status" class="pl-3 pr-8 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-[13px] font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-primary/20 appearance-none cursor-pointer">
+                  <option value="">Tất cả trạng thái</option>
+                  <option value="Chưa xử lý">Chưa xử lý</option>
+                  <option value="Đang xử lý">Đang xử lý</option>
+                  <option value="Đã giải quyết">Đã giải quyết</option>
+                </select>
+                <span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none text-[1rem]">expand_more</span>
+              </div>
+              <!-- Room Filter -->
+              <div class="relative">
+                <select id="violation-filter-room" class="pl-3 pr-8 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-[13px] font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-primary/20 appearance-none cursor-pointer">
+                  <option value="">Tất cả phòng</option>
+                </select>
+                <span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none text-[1rem]">expand_more</span>
+              </div>
+              <!-- Count -->
+              <span id="violation-count-label" class="text-[12px] font-bold text-slate-400 whitespace-nowrap self-center"></span>
+            </div>
+          </div>
+
+          <!-- Table -->
+          <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden animate-slide-up delay-200">
+            <div class="overflow-x-auto">
+              <table class="w-full text-left border-collapse min-w-[800px]">
+                <thead>
+                  <tr>
+                    <th class="sortable-th bg-[#fafbfc] text-slate-500 font-bold text-[12px] px-6 py-4 border-b border-slate-100 cursor-pointer select-none" data-sort="room">
+                      PHÒNG <span class="sort-icon text-[10px] ml-1">⇕</span>
+                    </th>
+                    <th class="sortable-th bg-[#fafbfc] text-slate-500 font-bold text-[12px] px-6 py-4 border-b border-slate-100 cursor-pointer select-none" data-sort="studentName">
+                      SINH VIÊN <span class="sort-icon text-[10px] ml-1">⇕</span>
+                    </th>
+                    <th class="sortable-th bg-[#fafbfc] text-slate-500 font-bold text-[12px] px-6 py-4 border-b border-slate-100 cursor-pointer select-none" data-sort="date">
+                      NGÀY VI PHẠM <span class="sort-icon text-[10px] ml-1">⇕</span>
+                    </th>
+                    <th class="bg-[#fafbfc] text-slate-500 font-bold text-[12px] px-6 py-4 border-b border-slate-100">
+                      LÝ DO
+                    </th>
+                    <th class="sortable-th bg-[#fafbfc] text-slate-500 font-bold text-[12px] px-6 py-4 border-b border-slate-100 cursor-pointer select-none" data-sort="points">
+                      ĐIỂM TRỪ <span class="sort-icon text-[10px] ml-1">⇕</span>
+                    </th>
+                    <th class="bg-[#fafbfc] text-slate-500 font-bold text-[12px] px-6 py-4 border-b border-slate-100 w-[140px]">
+                      TRẠNG THÁI
+                    </th>
+                    <th class="bg-[#fafbfc] text-slate-500 font-bold text-[12px] px-6 py-4 border-b border-slate-100 text-right w-[100px]">
+                      THAO TÁC
+                    </th>
+                  </tr>
+                </thead>
+                <tbody id="violations-table-body" class="divide-y divide-slate-100/80"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Pagination -->
+          <div class="flex flex-col md:flex-row items-center justify-between gap-4 mt-5 animate-slide-up delay-300">
+            <div class="flex items-center gap-2">
+              <span class="text-[12px] font-medium text-slate-500">Hiển thị</span>
+              <select id="violation-page-size" class="px-2 py-1.5 bg-white border border-slate-200 rounded-lg text-[12px] font-medium text-slate-700 focus:outline-none cursor-pointer">
+                <option value="10">10</option>
+                <option value="15">15</option>
+                <option value="25">25</option>
+                <option value="50">50</option>
+              </select>
+              <span class="text-[12px] font-medium text-slate-500">/ trang</span>
+            </div>
+            <div id="violation-pagination" class="flex items-center gap-1"></div>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <!-- Core Scripts -->
+    <script type="module" src="js/main.js"></script>
+    <script type="module" src="js/pages/violations.js"></script>
+  </body>
+</html>

@@ -1,0 +1,227 @@
+<nav
+  id="main-sidebar"
+  class="sidebar sticky top-0 left-0 w-[260px] h-screen bg-white border-r border-[#e2e8f0] flex flex-col shrink-0 transition-all duration-300 z-50"
+>
+  <!-- Top actions -->
+  <div
+    class="h-[60px] flex items-center justify-between px-3 shrink-0 sidebar-top"
+  >
+    <div class="flex items-center gap-2.5 sidebar-text overflow-hidden px-2">
+      <div
+        class="w-9 h-9 bg-[#3d6b4f] rounded-xl flex items-center justify-center text-white shrink-0 shadow-sm"
+      >
+        <span class="material-symbols-outlined text-[1.2rem]">hotel</span>
+      </div>
+      <div class="flex flex-col leading-tight whitespace-nowrap">
+        <span class="font-sans font-extrabold text-[15px] text-slate-800 tracking-tight">Dorm</span>
+        <span class="font-sans font-bold text-[9px] text-[#3d6b4f] uppercase tracking-[0.15em]">Management</span>
+      </div>
+    </div>
+    <button
+      id="sidebar-toggle"
+      class="p-2 rounded-lg text-slate-500 hover:bg-slate-100 hover:text-slate-700 transition-colors shrink-0 flex items-center justify-center h-10 w-10"
+    >
+      <span class="material-symbols-outlined text-[1.25rem]"
+        >left_panel_close</span
+      >
+    </button>
+  </div>
+
+
+
+  <!-- Navigation Links -->
+  <div
+    class="flex-1 overflow-y-auto px-3 pt-4 pb-2 scrollbar-none hover:scrollbar-thin"
+  >
+    <p
+      class="sidebar-text text-[0.7rem] font-bold text-slate-400 mb-2 px-3 tracking-wide"
+    >
+      DANH MỤC
+    </p>
+    <nav class="space-y-1 relative">
+      <a
+        href="index.html"
+        class="nav-item ${active_index} flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-600 text-sm font-semibold hover:bg-slate-50 hover:text-slate-900 transition-colors cursor-pointer group"
+      >
+        <div class="w-6 flex justify-center shrink-0">
+          <span
+            class="material-symbols-outlined text-[1.25rem] transition-colors group-hover:text-primary"
+            >dashboard</span
+          >
+        </div>
+        <span class="sidebar-text whitespace-nowrap">Tổng quan</span>
+      </a>
+      <a
+        href="students.html"
+        class="nav-item ${active_students} flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-600 text-sm font-semibold hover:bg-slate-50 hover:text-slate-900 transition-colors cursor-pointer group"
+      >
+        <div class="w-6 flex justify-center shrink-0">
+          <span
+            class="material-symbols-outlined text-[1.25rem] transition-colors group-hover:text-primary"
+            >group</span
+          >
+        </div>
+        <span class="sidebar-text whitespace-nowrap">Sinh viên</span>
+      </a>
+      <a
+        href="rooms.html"
+        class="nav-item ${active_rooms} flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-600 text-sm font-semibold hover:bg-slate-50 hover:text-slate-900 transition-colors cursor-pointer group"
+      >
+        <div class="w-6 flex justify-center shrink-0">
+          <span
+            class="material-symbols-outlined text-[1.25rem] transition-colors group-hover:text-primary"
+            >door_open</span
+          >
+        </div>
+        <span class="sidebar-text whitespace-nowrap">Phòng ở</span>
+      </a>
+      <a
+        href="contracts.html"
+        class="nav-item ${active_contracts} flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-600 text-sm font-semibold hover:bg-slate-50 hover:text-slate-900 transition-colors cursor-pointer group"
+      >
+        <div class="w-6 flex justify-center shrink-0">
+          <span
+            class="material-symbols-outlined text-[1.25rem] transition-colors group-hover:text-primary"
+            >contract</span
+          >
+        </div>
+        <span class="sidebar-text whitespace-nowrap">Hợp đồng</span>
+      </a>
+      <a
+        href="fees.html"
+        class="nav-item ${active_fees} flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-600 text-sm font-semibold hover:bg-slate-50 hover:text-slate-900 transition-colors cursor-pointer group"
+      >
+        <div class="w-6 flex justify-center shrink-0">
+          <span
+            class="material-symbols-outlined text-[1.25rem] transition-colors group-hover:text-primary"
+            >payments</span
+          >
+        </div>
+        <span class="sidebar-text whitespace-nowrap">Thanh toán</span>
+      </a>
+      <a
+        href="violations.html"
+        class="nav-item ${active_violations} flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-600 text-sm font-semibold hover:bg-slate-50 hover:text-slate-900 transition-colors cursor-pointer group"
+      >
+        <div class="w-6 flex justify-center shrink-0">
+          <span
+            class="material-symbols-outlined text-[1.25rem] transition-colors group-hover:text-primary"
+            >warning</span
+          >
+        </div>
+        <span class="sidebar-text whitespace-nowrap">Kỷ luật</span>
+      </a>
+      <a
+        href="reports.html"
+        class="nav-item ${active_reports} flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-600 text-sm font-semibold hover:bg-slate-50 hover:text-slate-900 transition-colors cursor-pointer group"
+      >
+        <div class="w-6 flex justify-center shrink-0">
+          <span
+            class="material-symbols-outlined text-[1.25rem] transition-colors group-hover:text-primary"
+            >bar_chart</span
+          >
+        </div>
+        <span class="sidebar-text whitespace-nowrap">Báo cáo</span>
+      </a>
+    </nav>
+  </div>
+
+  <!-- User Profile Footer -->
+  <div class="sidebar-footer p-3 mt-auto shrink-0 mb-2 sidebar-bottom relative">
+    <button
+      id="user-menu-btn"
+      class="flex items-center gap-3 px-3 py-[10px] rounded-xl hover:bg-slate-50 transition-colors cursor-pointer w-full text-left"
+    >
+      <div
+        class="w-[32px] h-[32px] bg-slate-100 rounded-full flex items-center justify-center font-bold text-slate-600 text-xs shrink-0 border border-slate-200"
+      >
+        AD
+      </div>
+      <div class="sidebar-text min-w-0 pr-2">
+        <p class="text-sm font-bold text-main leading-tight mb-[2px] truncate">
+          Admin
+        </p>
+        <p class="text-[0.65rem] font-medium text-slate-500 truncate">
+          Quản trị viên
+        </p>
+      </div>
+      <span
+        class="material-symbols-outlined sidebar-text text-sm ml-auto opacity-50 transition-transform duration-200 text-slate-400"
+        id="user-menu-icon"
+        style="white-space: nowrap; overflow: hidden; text-overflow: clip"
+        >more_horiz</span
+      >
+    </button>
+
+    <!-- Popup Menu -->
+    <div
+      id="user-menu-popup"
+      class="absolute bottom-[calc(100%+8px)] left-2 w-[250px] bg-white rounded-2xl border border-slate-100 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.15)] py-2 opacity-0 invisible transform translate-y-2 transition-all duration-200 z-[60] overflow-hidden"
+    >
+      <div class="px-5 py-3 flex items-center gap-3.5 mb-1">
+        <div
+          class="w-[42px] h-[42px] bg-slate-50 rounded-full flex items-center justify-center font-bold text-slate-700 text-[14px] shrink-0 border border-slate-200"
+        >
+          AD
+        </div>
+        <div class="min-w-0">
+          <p
+            class="text-[15px] font-bold text-main leading-tight truncate mb-[2px]"
+          >
+            Admin
+          </p>
+          <p class="text-[13px] font-medium text-slate-500 truncate">
+            @admin_ktx
+          </p>
+        </div>
+      </div>
+      <div class="h-px bg-slate-100 my-1 mx-5"></div>
+
+      <a
+        href="#"
+        class="flex items-center gap-3.5 px-5 py-3 hover:bg-slate-50 transition-colors text-[14px] font-semibold text-slate-700"
+      >
+        <span class="material-symbols-outlined text-[20px] text-slate-500"
+          >person</span
+        >
+        Hồ sơ cá nhân
+      </a>
+      <a
+        href="settings.html"
+        class="flex items-center gap-3.5 px-5 py-3 hover:bg-slate-50 transition-colors text-[14px] font-semibold text-slate-700"
+      >
+        <span class="material-symbols-outlined text-[20px] text-slate-500"
+          >settings</span
+        >
+        Cài đặt hệ thống
+      </a>
+
+      <div class="h-px bg-slate-100 my-1 mx-5"></div>
+
+      <a
+        href="#"
+        class="flex items-center px-5 py-3 hover:bg-slate-50 transition-colors text-[14px] font-semibold text-slate-700 justify-between"
+      >
+        <div class="flex items-center gap-3.5">
+          <span class="material-symbols-outlined text-[20px] text-slate-500"
+            >support</span
+          >
+          Hỗ trợ
+        </div>
+        <span class="material-symbols-outlined text-[18px] text-slate-400"
+          >chevron_right</span
+        >
+      </a>
+      <a
+        href="login.html"
+        class="flex items-center gap-3.5 px-5 py-3 hover:bg-danger/5 transition-colors text-[14px] font-semibold text-danger group"
+      >
+        <span
+          class="material-symbols-outlined text-[20px] group-hover:text-danger/90"
+          >logout</span
+        >
+        Đăng xuất
+      </a>
+    </div>
+  </div>
+</nav>

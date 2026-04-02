@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DormManager - Sinh viên</title>
+    <!-- Inject Tailwind via CDN -->
+    <script src="tailwind-config.js"></script>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-background text-main font-sans antialiased">
+    <div class="app-container">
+      <!-- Sidebar injected here -->
+      <div id="sidebar-container" style="display: contents"></div>
+
+      <div class="main-content">
+        <!-- Header injected here -->
+        <div id="header-container" style="display: contents"></div>
+
+        <!-- Page Content -->
+        <main class="p-6 md:p-8 animate-fade-in">
+          <div class="flex items-center justify-between mb-8 animate-slide-up">
+            <div>
+              <h2
+                class="text-2xl font-lexend font-bold tracking-tight text-main"
+              >
+                Sinh viên
+              </h2>
+              <p class="text-sm text-muted mt-1">
+                Quản lý danh bạ sinh viên và thông tin cư trú.
+              </p>
+            </div>
+            <div class="flex gap-3">
+                <button
+                  id="add-student-btn"
+                  class="bg-primary hover:bg-[#1046b6] text-white px-4 py-2 rounded-xl font-bold flex items-center gap-2 transition-all shadow-md shadow-primary/20"
+                >
+                  <span class="material-symbols-outlined text-[1.25rem]">add</span>
+                  Thêm sinh viên
+                </button>
+            </div>
+          </div>
+          
+          <!-- Filter & Search Bar -->
+          <div class="bg-white rounded-t-2xl border-x border-t border-slate-100 p-4 animate-slide-up">
+            <div class="flex flex-wrap items-center gap-3">
+              <!-- Search -->
+              <div class="relative flex-1 min-w-[200px] max-w-sm">
+                <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+                <input type="text" id="search-student-input" placeholder="Tìm theo tên, MSSV, SĐT, email..." class="w-full pl-10 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-[13px] focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all font-medium text-slate-700 placeholder-slate-400" />
+              </div>
+              <!-- Status Filter -->
+              <div class="relative">
+                <select id="filter-status" class="pl-3 pr-8 py-2 bg-slate-50 border border-slate-200 rounded-xl text-[13px] font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-primary/20 appearance-none cursor-pointer transition-all">
+                  <option value="">Tất cả trạng thái</option>
+                  <option value="Đang ở">Đang ở</option>
+                  <option value="Mới">Mới</option>
+                  <option value="Đã rời đi">Đã rời đi</option>
+                </select>
+                <span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none text-[1rem]">expand_more</span>
+              </div>
+              <!-- Major Filter -->
+              <div class="relative">
+                <select id="filter-major" class="pl-3 pr-8 py-2 bg-slate-50 border border-slate-200 rounded-xl text-[13px] font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-primary/20 appearance-none cursor-pointer transition-all">
+                  <option value="">Tất cả ngành</option>
+                </select>
+                <span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none text-[1rem]">expand_more</span>
+              </div>
+              <!-- Room Filter -->
+              <div class="relative">
+                <select id="filter-room" class="pl-3 pr-8 py-2 bg-slate-50 border border-slate-200 rounded-xl text-[13px] font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-primary/20 appearance-none cursor-pointer transition-all">
+                  <option value="">Tất cả phòng</option>
+                </select>
+                <span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none text-[1rem]">expand_more</span>
+              </div>
+              <!-- Student Count -->
+              <div class="ml-auto text-[12px] font-semibold text-slate-400" id="student-count-label"></div>
+            </div>
+          </div>
+
+          <!-- Table -->
+          <div class="bg-white shadow-sm border border-slate-100 overflow-hidden animate-slide-up delay-100">
+            <div class="overflow-x-auto">
+              <table class="w-full text-left border-collapse min-w-[700px]">
+                <thead>
+                  <tr>
+                    <th class="bg-slate-50 text-slate-500 font-bold uppercase text-xs px-6 py-4 border-b border-slate-200 sortable-th cursor-pointer select-none" data-sort="name">
+                      Tên sinh viên <span class="sort-icon ml-1 text-[0.7rem] opacity-40">↕</span>
+                    </th>
+                    <th class="bg-slate-50 text-slate-500 font-bold uppercase text-xs px-6 py-4 border-b border-slate-200 sortable-th cursor-pointer select-none" data-sort="room">
+                      Phòng <span class="sort-icon ml-1 text-[0.7rem] opacity-40">↕</span>
+                    </th>
+                    <th class="bg-slate-50 text-slate-500 font-bold uppercase text-xs px-6 py-4 border-b border-slate-200 sortable-th cursor-pointer select-none" data-sort="major">
+                      Ngành học <span class="sort-icon ml-1 text-[0.7rem] opacity-40">↕</span>
+                    </th>
+                    <th class="bg-slate-50 text-slate-500 font-bold uppercase text-xs px-6 py-4 border-b border-slate-200 sortable-th cursor-pointer select-none" data-sort="status">
+                      Trạng thái <span class="sort-icon ml-1 text-[0.7rem] opacity-40">↕</span>
+                    </th>
+                    <th class="bg-slate-50 text-slate-500 font-bold uppercase text-xs px-6 py-4 border-b border-slate-200 text-right">
+                      Thao tác
+                    </th>
+                  </tr>
+                </thead>
+                <tbody id="students-table-body">
+                  <!-- Populated via JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Pagination -->
+          <div class="bg-white rounded-b-2xl border-x border-b border-slate-100 px-4 py-3 flex items-center justify-between animate-slide-up delay-200">
+            <div class="flex items-center gap-2 text-[12px] text-slate-500">
+              <span>Hiển thị</span>
+              <select id="page-size-select" class="px-2 py-1 bg-slate-50 border border-slate-200 rounded-lg text-[12px] font-medium focus:outline-none cursor-pointer">
+                <option value="10">10</option>
+                <option value="15" selected>15</option>
+                <option value="25">25</option>
+                <option value="50">50</option>
+              </select>
+              <span>dòng / trang</span>
+            </div>
+            <div class="flex items-center gap-1" id="pagination-controls"></div>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <!-- Core Scripts -->
+    <script type="module" src="js/main.js"></script>
+    <script type="module" src="js/pages/students.js"></script>
+  </body>
+</html>
