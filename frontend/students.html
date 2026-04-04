@@ -4,21 +4,12 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DormManager - Sinh viên</title>
-    <!-- Inject Tailwind via CDN -->
-    <script src="tailwind-config.js"></script>
+    <!-- Tailwind local build -->
+    <link rel="stylesheet" href="tailwind.css" />
     <link rel="stylesheet" href="style.css" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
+    
+    
+    
   </head>
   <body class="bg-background text-main font-sans antialiased">
     <div class="app-container">
@@ -43,6 +34,14 @@
               </p>
             </div>
             <div class="flex gap-3">
+                <button
+                  id="auto-assign-btn"
+                  class="bg-white border text-blue-600 border-blue-200 hover:bg-blue-50 px-4 py-2 rounded-xl font-bold flex items-center gap-2 transition-all shadow-sm"
+                  title="Tự động xếp sinh viên vào các phòng trống"
+                >
+                  <span class="material-symbols-outlined text-[1.25rem]">auto_fix</span>
+                  Xếp phòng tự động
+                </button>
                 <button
                   id="add-student-btn"
                   class="bg-primary hover:bg-[#1046b6] text-white px-4 py-2 rounded-xl font-bold flex items-center gap-2 transition-all shadow-md shadow-primary/20"
@@ -143,3 +142,4 @@
     <script type="module" src="js/pages/students.js"></script>
   </body>
 </html>
+

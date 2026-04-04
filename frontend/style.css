@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap');
+
 /* ── Theme Variables (Light) ── */
 :root {
   --color-primary: #8daa91;
@@ -14,6 +16,8 @@
   --warning: #f59e0b;
   --radius: 16px;
   --transition: 0.3s ease;
+  --font-size-body: 15px;
+  --font-size-caption: 12px;
 }
 
 /* ── Theme Variables (Dark) ── */
@@ -117,8 +121,35 @@
 .dark .bg-slate-900\/40 { background-color: rgba(0, 0, 0, 0.6) !important; }
 
 /* ── Base Styles ── */
+html {
+  font-size: 16px;
+}
+
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined', 'Segoe UI Symbol', sans-serif;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1em;
+  min-width: 1em;
+  height: 1em;
+  white-space: nowrap;
+  overflow: hidden;
+  direction: ltr;
+  font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+}
+
 body {
   font-family: 'Inter', sans-serif;
+  font-size: var(--font-size-body);
+  line-height: 1.5;
   background-color: var(--color-bg);
   color: var(--color-main);
   -webkit-font-smoothing: antialiased;
@@ -127,6 +158,20 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Lexend', sans-serif;
+}
+
+/* ── Typography Tune ── */
+.text-\[0\.65rem\],
+.text-\[0\.7rem\],
+.text-\[9px\],
+.text-\[10px\] {
+  font-size: 0.75rem !important;
+  line-height: 1.25 !important;
+}
+
+.text-\[11px\] {
+  font-size: var(--font-size-caption) !important;
+  line-height: 1.3 !important;
 }
 
 /* ── Custom Scrollbar ── */

@@ -1,11 +1,22 @@
 import { showToast } from '../utils/dom.js';
 
 const AUTH_KEY = 'dorm_auth_session';
+const REMEMBER_USER_KEY = 'dorm_login_user';
 
 // If already logged in, redirect to dashboard
 if (sessionStorage.getItem(AUTH_KEY)) {
     window.location.href = 'index.html';
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    const savedUser = localStorage.getItem(REMEMBER_USER_KEY);
+    const usernameInput = document.getElementById('username');
+    const rememberInput = document.getElementById('remember');
+    if (savedUser && usernameInput) {
+        usernameInput.value = savedUser;
+        if (rememberInput) rememberInput.checked = true;
+    }
+});
 
 document.getElementById('login-form').addEventListener('submit', (e) => {
     e.preventDefault();
@@ -20,6 +31,12 @@ document.getElementById('login-form').addEventListener('submit', (e) => {
         const pass = document.getElementById('password').value;
         
         if (user.toLowerCase() === 'admin' && pass === '123456') {
+            const rememberInput = document.getElementById('remember');
+            if (rememberInput?.checked) {
+                localStorage.setItem(REMEMBER_USER_KEY, user);
+            } else {
+                localStorage.removeItem(REMEMBER_USER_KEY);
+            }
             // Save authentication session
             sessionStorage.setItem(AUTH_KEY, JSON.stringify({
                 user: user.toLowerCase(),

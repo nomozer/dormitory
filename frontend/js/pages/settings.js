@@ -106,7 +106,7 @@ const renderSystemInfo = () => {
 
     const state = getState();
     const info = [
-        ['Phiên bản ứng dụng', `v${state._version || '7'}.0`],
+        ['Phiên bản ứng dụng', `v${state.version || '7'}.0`],
         ['Kiến trúc', 'Vanilla JS + ES Modules + Tailwind CSS'],
         ['Lưu trữ', 'localStorage (browser)'],
         ['Trình duyệt', navigator.userAgent.split(') ').pop() || navigator.userAgent],
@@ -305,6 +305,7 @@ export function setupSettingsListeners() {
 
 // ── Bootstrap ──
 document.addEventListener('DOMContentLoaded', () => {
+    window.addEventListener('componentsLoaded', renderProfile);
     renderSettings();
     setupSettingsListeners();
 });

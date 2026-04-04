@@ -17,8 +17,20 @@ powershell -ExecutionPolicy Bypass -File backend/create_venv.ps1
 ```
 
 Script sẽ:
-- tạo `.venv` với `--without-pip` để tránh lỗi `ensurepip` trên host bị khóa quyền temp.
+- tạo `backend/.venv` với `--without-pip` để tránh lỗi `ensurepip` trên host bị khóa quyền temp.
 - ép `TMP/TEMP` vào `backend/runtime/tmp`.
+
+## Cài package Python chỉ trong `backend/.venv` (không dùng Python global)
+
+```powershell
+powershell -ExecutionPolicy Bypass -File backend/pip_venv.ps1 install <ten_goi>
+```
+
+Ví dụ:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File backend/pip_venv.ps1 install playwright
+```
 
 ## 2) Chạy backend Python
 
@@ -81,7 +93,7 @@ powershell -ExecutionPolicy Bypass -File backend/run_backend.ps1
 ## 6) Smoke test nhanh
 
 ```powershell
-.\.venv\Scripts\python.exe backend/smoke_test.py
+.\backend\.venv\Scripts\python.exe backend/smoke_test.py
 ```
 
 Test sẽ kiểm tra:

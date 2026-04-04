@@ -15,7 +15,14 @@ let filterFloor = '';
 
 // ── Pure helpers ──
 const matchId = (a, b) => String(a) === String(b);
-const getMembersOf = (students, roomId) => students.filter((sv) => matchId(sv.room, roomId));
+const parseRoomNumber = (roomId) => {
+    const raw = String(roomId ?? '').trim();
+    if (!raw) return '';
+    const numeric = raw.match(/\d{2,4}$/);
+    return numeric ? numeric[0] : raw;
+};
+const getMembersOf = (students, roomId) =>
+    students.filter((sv) => matchId(sv.room, roomId) && sv.status !== 'Đã rời đi');
 const getFeesOf = (fees, roomId) => fees.filter((f) => matchId(f.room, roomId));
 const getContractOf = (contracts, roomId) => contracts.filter((c) => matchId(c.room, roomId));
 const getViolationsOf = (violations, roomId) => violations.filter((v) => matchId(v.room, roomId));
@@ -101,6 +108,7 @@ function showRoomDetail(roomId) {
     const state = getState();
     const room = state.rooms.find((r) => matchId(r.id, roomId));
     if (!room) return;
+    const roomNumber = parseRoomNumber(room.id);
 
     const members = getMembersOf(state.students, roomId);
     const fees = getFeesOf(state.fees, roomId);
@@ -149,6 +157,7 @@ function showRoomDetail(roomId) {
         ? '<div class="py-4 text-center text-slate-400 text-[13px] font-medium">Chưa có hóa đơn</div>'
         : fees.slice(0, 10).map((f) => {
             const isPaid = completedFeeStatuses.has(f.status);
+            const feeLabel = f.type || 'Phí phòng';
             return `
             <div class="flex items-center justify-between py-2.5 border-b border-slate-100/60 last:border-0">
                 <div class="flex items-center gap-2.5">
@@ -156,7 +165,7 @@ function showRoomDetail(roomId) {
                         <span class="material-symbols-outlined text-[14px]">${isPaid ? 'check_circle' : 'schedule'}</span>
                     </div>
                     <div>
-                        <span class="text-[12px] font-bold text-slate-700">${escapeHtml(f.type)}</span>
+                        <span class="text-[12px] font-bold text-slate-700">${escapeHtml(feeLabel)}</span>
                         <span class="text-[10px] text-slate-400 ml-1.5">${escapeHtml(f.month)}</span>
                     </div>
                 </div>
@@ -194,7 +203,7 @@ function showRoomDetail(roomId) {
             <div class="flex items-center justify-between mb-4">
                 <div class="flex items-center gap-4">
                     <div class="w-14 h-14 bg-gradient-to-br from-[#e6efeb] to-[#d4e5da] flex items-center justify-center rounded-2xl text-[#3d6b4f] text-xl font-black relative overflow-hidden border border-[#3d6b4f]/10">
-                        <span class="relative z-10">${escapeHtml(String(room.id))}</span>
+                        <span class="relative z-10">${escapeHtml(String(roomNumber))}</span>
                         <div class="absolute bottom-0 left-0 right-0 bg-[#3d6b4f]/15 transition-all" style="height: ${percent}%"></div>
                     </div>
                     <div>
@@ -273,7 +282,13 @@ function showRoomDetail(roomId) {
         requestAnimationFrame(() => panel.classList.remove('translate-x-full'));
     });
 
+    let isClosed = false;
+    const onEsc = (e) => { if (e.key === 'Escape') closePanel(); };
+
     const closePanel = () => {
+        if (isClosed) return;
+        isClosed = true;
+        document.removeEventListener('keydown', onEsc);
         panel.classList.add('translate-x-full');
         overlay.classList.add('opacity-0');
         setTimeout(() => overlay.remove(), 300);
@@ -283,7 +298,6 @@ function showRoomDetail(roomId) {
     overlay.addEventListener('click', (e) => { if (e.target === overlay) closePanel(); });
 
     // Escape key to close
-    const onEsc = (e) => { if (e.key === 'Escape') { closePanel(); document.removeEventListener('keydown', onEsc); } };
     document.addEventListener('keydown', onEsc);
 
     // Add member
@@ -296,12 +310,13 @@ function showRoomDetail(roomId) {
                 return;
             }
             const unassigned = state.students.filter((s) => !s.room || s.room === 'Chưa xếp');
-            if (unassigned.length === 0) {
+            const assignable = unassigned.filter((s) => s.status !== 'Đã rời đi');
+            if (assignable.length === 0) {
                 showToast('Không còn sinh viên nào chưa được xếp phòng!', 'info');
                 return;
             }
-            const options = unassigned.map((s) => `${s.id} - ${s.name}`);
-            const data = await showPrompt(`Xếp sinh viên vào Phòng ${roomId}`, [
+            const options = assignable.map((s) => `${s.id} - ${s.name}`);
+            const data = await showPrompt(`Xếp sinh viên vào Phòng ${parseRoomNumber(roomId)}`, [
                 { name: 'student', label: 'Chọn sinh viên', type: 'select', options, placeholder: '-- Chọn sinh viên --', required: true }
             ]);
             if (!data || !data.student) return;
@@ -316,7 +331,7 @@ function showRoomDetail(roomId) {
             });
             updateState({ students: updatedStudents, rooms: updatedRooms });
             closePanel();
-            showToast(`Đã xếp sinh viên vào phòng ${roomId}!`, 'success');
+            showToast(`Đã xếp sinh viên vào phòng ${parseRoomNumber(roomId)}!`, 'success');
             setTimeout(() => showRoomDetail(roomId), 350);
         });
     });
@@ -329,7 +344,7 @@ function showRoomDetail(roomId) {
             const sv = state.students.find((s) => matchId(s.id, svId));
             const confirmed = await showConfirm(
                 'Chuyển sinh viên',
-                `Bạn có chắc muốn chuyển ${sv ? sv.name : 'sinh viên này'} ra khỏi phòng ${roomId}?`,
+                `Bạn có chắc muốn chuyển ${sv ? sv.name : 'sinh viên này'} ra khỏi phòng ${parseRoomNumber(roomId)}?`,
                 true
             );
             if (!confirmed) return;
@@ -353,7 +368,7 @@ function showRoomDetail(roomId) {
         btn.addEventListener('click', async () => {
             const now = new Date();
             const defaultMonth = `${String(now.getMonth() + 1).padStart(2, '0')}/${now.getFullYear()}`;
-            const data = await showPrompt(`Tạo hóa đơn cho Phòng ${roomId}`, [
+            const data = await showPrompt(`Tạo hóa đơn cho Phòng ${parseRoomNumber(roomId)}`, [
                 { name: 'type', label: 'Loại phí', type: 'select', options: ['Tiền phòng', 'Điện & Nước', 'Dịch vụ giặt ủi', 'Phí vi phạm', 'Phí khác'], required: true },
                 { name: 'amount', label: 'Số tiền (VNĐ)', placeholder: 'VD: 2500000', type: 'number', required: true },
                 { name: 'month', label: 'Tháng', value: defaultMonth, placeholder: 'VD: 03/2026', required: true },
@@ -466,7 +481,7 @@ export function renderRooms() {
                 </div>
                 <div class="flex items-center gap-5 mb-5">
                     <div class="w-[60px] h-[60px] bg-gradient-to-br from-[#e6efeb] to-[#d4e5da] flex items-center justify-center rounded-2xl text-[#3d6b4f] text-2xl font-black relative overflow-hidden border border-[#3d6b4f]/10 shadow-inner">
-                        <span class="relative z-10">${escapeHtml(String(room.id))}</span>
+                        <span class="relative z-10">${escapeHtml(String(parseRoomNumber(room.id)))}</span>
                         <div class="absolute bottom-0 left-0 right-0 bg-[#3d6b4f]/15 transition-all duration-700 ease-out" style="height: ${percent}%;"></div>
                     </div>
                     <div>
@@ -592,7 +607,7 @@ export function setupEventListeners() {
                 const room = state.rooms.find((r) => matchId(r.id, id));
                 if (!room) return;
 
-                const data = await showPrompt(`Chỉnh sửa Phòng ${room.id}`, [
+                const data = await showPrompt(`Chỉnh sửa Phòng ${parseRoomNumber(room.id)}`, [
                     { name: 'type', label: 'Loại phòng', value: room.type, type: 'select', options: ['Phòng Tiêu Chuẩn', 'Phòng Cao Cấp', 'Phòng VIP'] },
                     { name: 'capacity', label: 'Sức chứa (tối đa)', value: String(room.capacity), type: 'number' },
                     { name: 'status', label: 'Trạng thái', value: room.status, type: 'select', options: ['Còn trống', 'Đã đầy', 'Đang bảo trì'] }
@@ -627,11 +642,11 @@ export function setupEventListeners() {
                 const members = room ? getMembersOf(state.students, room.id) : [];
 
                 if (members.length > 0) {
-                    showToast(`Phòng ${id} đang có ${members.length} sinh viên. Hãy chuyển hết SV trước khi xóa.`, 'error');
+                    showToast(`Phòng ${parseRoomNumber(id)} đang có ${members.length} sinh viên. Hãy chuyển hết SV trước khi xóa.`, 'error');
                     return;
                 }
 
-                const confirmed = await showConfirm('Xóa Phòng', `Bạn có chắc chắn muốn xóa phòng ${id}?`, true);
+                const confirmed = await showConfirm('Xóa Phòng', `Bạn có chắc chắn muốn xóa phòng ${parseRoomNumber(id)}?`, true);
                 if (confirmed) {
                     updateState({ rooms: state.rooms.filter((r) => !matchId(r.id, id)) });
                     populateFloorFilter();

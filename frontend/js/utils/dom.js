@@ -23,6 +23,7 @@ export function createElement(htmlString) {
 const toastConfig = {
     success: { bg: 'bg-emerald-600', icon: 'check_circle' },
     error:   { bg: 'bg-rose-600',    icon: 'error' },
+    warn:    { bg: 'bg-amber-600',   icon: 'warning' },
     info:    { bg: 'bg-primary',     icon: 'info' }
 };
 

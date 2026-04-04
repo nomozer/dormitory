@@ -219,7 +219,7 @@ export function renderFees() {
         <tr class="animate-fade-in hover:bg-slate-50/50 transition-colors" style="animation-delay: ${delay}ms">
             <td class="p-4 px-6 border-b border-slate-100 align-middle text-sm font-bold text-primary opacity-80">${escapeHtml(fee.id)}</td>
             <td class="p-4 px-6 border-b border-slate-100 align-middle text-sm font-bold text-main">Phòng ${escapeHtml(String(fee.room))}</td>
-            <td class="p-4 px-6 border-b border-slate-100 align-middle text-sm font-medium text-muted">${escapeHtml(fee.type)}</td>
+            <td class="p-4 px-6 border-b border-slate-100 align-middle text-sm font-medium text-muted">${escapeHtml(fee.type || 'Phí phòng')}</td>
             <td class="p-4 px-6 border-b border-slate-100 align-middle text-sm font-medium text-muted bg-slate-50/50">${escapeHtml(fee.month)}</td>
             <td class="p-4 px-6 border-b border-slate-100 align-middle text-sm font-black text-main">${formatCurrency(fee.amount)}</td>
             <td class="p-4 px-6 border-b border-slate-100 align-middle">${statusBadge(fee.status, fee.id)}</td>

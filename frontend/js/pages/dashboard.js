@@ -131,7 +131,7 @@ const renderRecentTransactions = (fees, students) => {
                 <div>
                     <h4 class="text-[13px] font-bold text-slate-800 leading-tight flex items-center gap-2">
                         ${statusDot}
-                        ${escapeHtml(fee.type)} - P.${escapeHtml(String(fee.room))}
+                        ${escapeHtml(fee.type || 'Phí phòng')} - P.${escapeHtml(String(fee.room))}
                     </h4>
                     <p class="text-[11px] font-bold text-slate-400 mt-0.5 uppercase tracking-wider">${escapeHtml(fee.month || '')} | ${escapeHtml(fee.status)}</p>
                 </div>

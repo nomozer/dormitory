@@ -1,16 +1,161 @@
 id,type,capacity,occupied,floor,building,status
-101,Phòng Tiêu Chuẩn,6,3,1,Tòa A,Còn trống
-102,Phòng Cao Cấp,4,2,1,Tòa A,Còn trống
-201,Phòng VIP,2,1,2,Tòa A,Còn trống
-202,Phòng Tiêu Chuẩn,6,2,2,Tòa B,Còn trống
-203,Phòng Tiêu Chuẩn,6,3,2,Tòa A,Còn trống
-301,Phòng VIP,2,2,3,Tòa B,Đã đầy
-302,Phòng Cao Cấp,4,2,3,Tòa C,Còn trống
-401,Phòng Tiêu Chuẩn,8,2,4,Tòa C,Còn trống
-402,Phòng VIP,2,2,4,Tòa B,Đã đầy
-403,Phòng Cao Cấp,4,2,4,Tòa A,Còn trống
-501,Phòng Tiêu Chuẩn,6,2,5,Tòa C,Còn trống
-502,Phòng VIP,2,1,5,Tòa B,Còn trống
-601,Phòng Tiêu Chuẩn,8,0,6,Tòa C,Đang bảo trì
-602,Phòng VIP,2,0,6,Tòa A,Đang bảo trì
-603,Phòng Cao Cấp,4,0,6,Tòa B,Còn trống
+A101,Phòng Tiêu Chuẩn,4,0,1,Tòa A,Còn trống
+A102,Phòng Tiêu Chuẩn,6,0,1,Tòa A,Còn trống
+A103,Phòng Cao Cấp,4,0,1,Tòa A,Còn trống
+A104,Phòng VIP,2,0,1,Tòa A,Còn trống
+A105,Phòng Tiêu Chuẩn,4,0,1,Tòa A,Còn trống
+A106,Phòng Tiêu Chuẩn,6,0,1,Tòa A,Còn trống
+A107,Phòng Cao Cấp,4,0,1,Tòa A,Còn trống
+A108,Phòng VIP,2,0,1,Tòa A,Còn trống
+A201,Phòng Tiêu Chuẩn,4,0,2,Tòa A,Còn trống
+A202,Phòng Tiêu Chuẩn,6,0,2,Tòa A,Còn trống
+A203,Phòng Cao Cấp,4,0,2,Tòa A,Còn trống
+A204,Phòng VIP,2,0,2,Tòa A,Còn trống
+A205,Phòng Tiêu Chuẩn,4,0,2,Tòa A,Còn trống
+A206,Phòng Tiêu Chuẩn,6,0,2,Tòa A,Còn trống
+A207,Phòng Cao Cấp,4,0,2,Tòa A,Còn trống
+A208,Phòng VIP,2,0,2,Tòa A,Còn trống
+A301,Phòng Tiêu Chuẩn,4,0,3,Tòa A,Còn trống
+A302,Phòng Tiêu Chuẩn,6,0,3,Tòa A,Còn trống
+A303,Phòng Cao Cấp,4,0,3,Tòa A,Còn trống
+A304,Phòng VIP,2,0,3,Tòa A,Còn trống
+A305,Phòng Tiêu Chuẩn,4,0,3,Tòa A,Còn trống
+A306,Phòng Tiêu Chuẩn,6,0,3,Tòa A,Còn trống
+A307,Phòng Cao Cấp,4,0,3,Tòa A,Còn trống
+A308,Phòng VIP,2,0,3,Tòa A,Còn trống
+A401,Phòng Tiêu Chuẩn,4,0,4,Tòa A,Còn trống
+A402,Phòng Tiêu Chuẩn,6,0,4,Tòa A,Còn trống
+A403,Phòng Cao Cấp,4,0,4,Tòa A,Còn trống
+A404,Phòng VIP,2,0,4,Tòa A,Còn trống
+A405,Phòng Tiêu Chuẩn,4,0,4,Tòa A,Còn trống
+A406,Phòng Tiêu Chuẩn,6,0,4,Tòa A,Còn trống
+A407,Phòng Cao Cấp,4,0,4,Tòa A,Còn trống
+A408,Phòng VIP,2,0,4,Tòa A,Còn trống
+A501,Phòng Tiêu Chuẩn,4,0,5,Tòa A,Đang bảo trì
+A502,Phòng Tiêu Chuẩn,6,0,5,Tòa A,Còn trống
+A503,Phòng Cao Cấp,4,0,5,Tòa A,Còn trống
+A504,Phòng VIP,2,0,5,Tòa A,Còn trống
+A505,Phòng Tiêu Chuẩn,4,0,5,Tòa A,Còn trống
+A506,Phòng Tiêu Chuẩn,6,0,5,Tòa A,Còn trống
+A507,Phòng Cao Cấp,4,0,5,Tòa A,Còn trống
+A508,Phòng VIP,2,0,5,Tòa A,Còn trống
+B101,Phòng Tiêu Chuẩn,4,0,1,Tòa B,Còn trống
+B102,Phòng Tiêu Chuẩn,6,0,1,Tòa B,Còn trống
+B103,Phòng Cao Cấp,4,0,1,Tòa B,Còn trống
+B104,Phòng VIP,2,0,1,Tòa B,Còn trống
+B105,Phòng Tiêu Chuẩn,4,0,1,Tòa B,Còn trống
+B106,Phòng Tiêu Chuẩn,6,0,1,Tòa B,Còn trống
+B107,Phòng Cao Cấp,4,0,1,Tòa B,Còn trống
+B108,Phòng VIP,2,0,1,Tòa B,Còn trống
+B201,Phòng Tiêu Chuẩn,4,0,2,Tòa B,Còn trống
+B202,Phòng Tiêu Chuẩn,6,0,2,Tòa B,Còn trống
+B203,Phòng Cao Cấp,4,0,2,Tòa B,Còn trống
+B204,Phòng VIP,2,0,2,Tòa B,Còn trống
+B205,Phòng Tiêu Chuẩn,4,0,2,Tòa B,Còn trống
+B206,Phòng Tiêu Chuẩn,6,0,2,Tòa B,Còn trống
+B207,Phòng Cao Cấp,4,0,2,Tòa B,Còn trống
+B208,Phòng VIP,2,0,2,Tòa B,Còn trống
+B301,Phòng Tiêu Chuẩn,4,0,3,Tòa B,Còn trống
+B302,Phòng Tiêu Chuẩn,6,0,3,Tòa B,Còn trống
+B303,Phòng Cao Cấp,4,0,3,Tòa B,Còn trống
+B304,Phòng VIP,2,0,3,Tòa B,Còn trống
+B305,Phòng Tiêu Chuẩn,4,0,3,Tòa B,Còn trống
+B306,Phòng Tiêu Chuẩn,6,0,3,Tòa B,Còn trống
+B307,Phòng Cao Cấp,4,0,3,Tòa B,Còn trống
+B308,Phòng VIP,2,0,3,Tòa B,Còn trống
+B401,Phòng Tiêu Chuẩn,4,0,4,Tòa B,Còn trống
+B402,Phòng Tiêu Chuẩn,6,0,4,Tòa B,Còn trống
+B403,Phòng Cao Cấp,4,0,4,Tòa B,Còn trống
+B404,Phòng VIP,2,0,4,Tòa B,Còn trống
+B405,Phòng Tiêu Chuẩn,4,0,4,Tòa B,Còn trống
+B406,Phòng Tiêu Chuẩn,6,0,4,Tòa B,Còn trống
+B407,Phòng Cao Cấp,4,0,4,Tòa B,Còn trống
+B408,Phòng VIP,2,0,4,Tòa B,Còn trống
+B501,Phòng Tiêu Chuẩn,4,0,5,Tòa B,Đang bảo trì
+B502,Phòng Tiêu Chuẩn,6,0,5,Tòa B,Còn trống
+B503,Phòng Cao Cấp,4,0,5,Tòa B,Còn trống
+B504,Phòng VIP,2,0,5,Tòa B,Còn trống
+B505,Phòng Tiêu Chuẩn,4,0,5,Tòa B,Còn trống
+B506,Phòng Tiêu Chuẩn,6,0,5,Tòa B,Còn trống
+B507,Phòng Cao Cấp,4,0,5,Tòa B,Còn trống
+B508,Phòng VIP,2,0,5,Tòa B,Còn trống
+C101,Phòng Tiêu Chuẩn,4,0,1,Tòa C,Còn trống
+C102,Phòng Tiêu Chuẩn,6,0,1,Tòa C,Còn trống
+C103,Phòng Cao Cấp,4,0,1,Tòa C,Còn trống
+C104,Phòng VIP,2,0,1,Tòa C,Còn trống
+C105,Phòng Tiêu Chuẩn,4,0,1,Tòa C,Còn trống
+C106,Phòng Tiêu Chuẩn,6,0,1,Tòa C,Còn trống
+C107,Phòng Cao Cấp,4,0,1,Tòa C,Còn trống
+C108,Phòng VIP,2,0,1,Tòa C,Còn trống
+C201,Phòng Tiêu Chuẩn,4,0,2,Tòa C,Còn trống
+C202,Phòng Tiêu Chuẩn,6,0,2,Tòa C,Còn trống
+C203,Phòng Cao Cấp,4,0,2,Tòa C,Còn trống
+C204,Phòng VIP,2,0,2,Tòa C,Còn trống
+C205,Phòng Tiêu Chuẩn,4,0,2,Tòa C,Còn trống
+C206,Phòng Tiêu Chuẩn,6,0,2,Tòa C,Còn trống
+C207,Phòng Cao Cấp,4,0,2,Tòa C,Còn trống
+C208,Phòng VIP,2,0,2,Tòa C,Còn trống
+C301,Phòng Tiêu Chuẩn,4,0,3,Tòa C,Còn trống
+C302,Phòng Tiêu Chuẩn,6,0,3,Tòa C,Còn trống
+C303,Phòng Cao Cấp,4,0,3,Tòa C,Còn trống
+C304,Phòng VIP,2,0,3,Tòa C,Còn trống
+C305,Phòng Tiêu Chuẩn,4,0,3,Tòa C,Còn trống
+C306,Phòng Tiêu Chuẩn,6,0,3,Tòa C,Còn trống
+C307,Phòng Cao Cấp,4,0,3,Tòa C,Còn trống
+C308,Phòng VIP,2,0,3,Tòa C,Còn trống
+C401,Phòng Tiêu Chuẩn,4,0,4,Tòa C,Còn trống
+C402,Phòng Tiêu Chuẩn,6,0,4,Tòa C,Còn trống
+C403,Phòng Cao Cấp,4,0,4,Tòa C,Còn trống
+C404,Phòng VIP,2,0,4,Tòa C,Còn trống
+C405,Phòng Tiêu Chuẩn,4,0,4,Tòa C,Còn trống
+C406,Phòng Tiêu Chuẩn,6,0,4,Tòa C,Còn trống
+C407,Phòng Cao Cấp,4,0,4,Tòa C,Còn trống
+C408,Phòng VIP,2,0,4,Tòa C,Còn trống
+C501,Phòng Tiêu Chuẩn,4,0,5,Tòa C,Đang bảo trì
+C502,Phòng Tiêu Chuẩn,6,0,5,Tòa C,Còn trống
+C503,Phòng Cao Cấp,4,0,5,Tòa C,Còn trống
+C504,Phòng VIP,2,0,5,Tòa C,Còn trống
+C505,Phòng Tiêu Chuẩn,4,0,5,Tòa C,Còn trống
+C506,Phòng Tiêu Chuẩn,6,0,5,Tòa C,Còn trống
+C507,Phòng Cao Cấp,4,0,5,Tòa C,Còn trống
+C508,Phòng VIP,2,0,5,Tòa C,Còn trống
+D101,Phòng Tiêu Chuẩn,4,0,1,Tòa D,Còn trống
+D102,Phòng Tiêu Chuẩn,6,0,1,Tòa D,Còn trống
+D103,Phòng Cao Cấp,4,0,1,Tòa D,Còn trống
+D104,Phòng VIP,2,0,1,Tòa D,Còn trống
+D105,Phòng Tiêu Chuẩn,4,0,1,Tòa D,Còn trống
+D106,Phòng Tiêu Chuẩn,6,0,1,Tòa D,Còn trống
+D107,Phòng Cao Cấp,4,0,1,Tòa D,Còn trống
+D108,Phòng VIP,2,0,1,Tòa D,Còn trống
+D201,Phòng Tiêu Chuẩn,4,0,2,Tòa D,Còn trống
+D202,Phòng Tiêu Chuẩn,6,0,2,Tòa D,Còn trống
+D203,Phòng Cao Cấp,4,0,2,Tòa D,Còn trống
+D204,Phòng VIP,2,0,2,Tòa D,Còn trống
+D205,Phòng Tiêu Chuẩn,4,0,2,Tòa D,Còn trống
+D206,Phòng Tiêu Chuẩn,6,0,2,Tòa D,Còn trống
+D207,Phòng Cao Cấp,4,0,2,Tòa D,Còn trống
+D208,Phòng VIP,2,0,2,Tòa D,Còn trống
+D301,Phòng Tiêu Chuẩn,4,0,3,Tòa D,Còn trống
+D302,Phòng Tiêu Chuẩn,6,0,3,Tòa D,Còn trống
+D303,Phòng Cao Cấp,4,0,3,Tòa D,Còn trống
+D304,Phòng VIP,2,0,3,Tòa D,Còn trống
+D305,Phòng Tiêu Chuẩn,4,0,3,Tòa D,Còn trống
+D306,Phòng Tiêu Chuẩn,6,0,3,Tòa D,Còn trống
+D307,Phòng Cao Cấp,4,0,3,Tòa D,Còn trống
+D308,Phòng VIP,2,0,3,Tòa D,Còn trống
+D401,Phòng Tiêu Chuẩn,4,0,4,Tòa D,Còn trống
+D402,Phòng Tiêu Chuẩn,6,0,4,Tòa D,Còn trống
+D403,Phòng Cao Cấp,4,0,4,Tòa D,Còn trống
+D404,Phòng VIP,2,0,4,Tòa D,Còn trống
+D405,Phòng Tiêu Chuẩn,4,0,4,Tòa D,Còn trống
+D406,Phòng Tiêu Chuẩn,6,0,4,Tòa D,Còn trống
+D407,Phòng Cao Cấp,4,0,4,Tòa D,Còn trống
+D408,Phòng VIP,2,0,4,Tòa D,Còn trống
+D501,Phòng Tiêu Chuẩn,4,0,5,Tòa D,Đang bảo trì
+D502,Phòng Tiêu Chuẩn,6,0,5,Tòa D,Còn trống
+D503,Phòng Cao Cấp,4,0,5,Tòa D,Còn trống
+D504,Phòng VIP,2,0,5,Tòa D,Còn trống
+D505,Phòng Tiêu Chuẩn,4,0,5,Tòa D,Còn trống
+D506,Phòng Tiêu Chuẩn,6,0,5,Tòa D,Còn trống
+D507,Phòng Cao Cấp,4,0,5,Tòa D,Còn trống
+D508,Phòng VIP,2,0,5,Tòa D,Còn trống

@@ -1,8 +1,8 @@
-import { createRafBatcher, deepClone } from '../utils/fp.js';
+import { createRafBatcher } from '../utils/fp.js';
 
 export const APP_STATE_KEY = 'dorm_manager_state';
 
-const APP_STATE_VERSION = 7;
+const APP_STATE_VERSION = 12;
 
 const defaultState = {
     version: APP_STATE_VERSION,
@@ -43,18 +43,94 @@ const parseCSV = (csvText) => {
 
 // ── CSV Loader ──
 const csvFiles = ['students', 'rooms', 'contracts', 'fees', 'violations'];
+const BACKEND_URL_KEY = 'dorm_backend_url';
+const DEFAULT_BACKEND_URL = 'http://127.0.0.1:5050';
 
-const fetchCSV = (name) =>
-    fetch(`data/${name}.csv`).then((r) => r.text()).then(parseCSV);
+const getBackendBaseUrl = () =>
+    (localStorage.getItem(BACKEND_URL_KEY) || DEFAULT_BACKEND_URL).replace(/\/+$/, '');
+
+const normalizeRows = (rows) =>
+    (rows || []).map((row) =>
+        Object.fromEntries(
+            Object.entries(row || {}).map(([key, value]) => [key, inferType(value)])
+        )
+    );
+
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+const shouldRetryFetchError = (error) => {
+    const message = String(error?.message || error || '');
+    return /Failed to fetch|ERR_NETWORK_ACCESS_DENIED|NetworkError/i.test(message);
+};
+
+const fetchWithRetry = async (url, options = {}, retries = 2) => {
+    let lastError;
+    for (let attempt = 0; attempt <= retries; attempt += 1) {
+        try {
+            return await fetch(url, options);
+        } catch (error) {
+            lastError = error;
+            if (attempt >= retries || !shouldRetryFetchError(error)) throw error;
+            await sleep(200 * (attempt + 1));
+        }
+    }
+    throw lastError;
+};
+
+const fetchCSV = async (name) => {
+    const response = await fetchWithRetry(`data/${name}.csv`);
+    if (!response.ok) {
+        throw new Error(`Cannot load CSV: ${name} (${response.status})`);
+    }
+    const csvText = await response.text();
+    return parseCSV(csvText);
+};
+
+const fetchBackendDataset = async (name) => {
+    const response = await fetchWithRetry(`${getBackendBaseUrl()}/api/datasets/${name}?limit=50000`, {
+        headers: { Accept: 'application/json' }
+    });
+    if (!response.ok) {
+        throw new Error(`Backend dataset failed: ${name} (${response.status})`);
+    }
+    const payload = await response.json();
+    if (!payload || payload.ok !== true || !Array.isArray(payload.rows)) {
+        throw new Error(`Invalid backend payload: ${name}`);
+    }
+    return normalizeRows(payload.rows);
+};
 
 async function initializeFromCSV() {
     try {
-        const datasets = await Promise.all(csvFiles.map(fetchCSV));
+        let datasets;
+        try {
+            datasets = await Promise.all(csvFiles.map(fetchCSV));
+        } catch (csvError) {
+            console.warn('CSV load failed, fallback to backend datasets.', csvError);
+            datasets = await Promise.all(csvFiles.map(fetchBackendDataset));
+        }
         const dataMap = Object.fromEntries(csvFiles.map((name, i) => [name, datasets[i]]));
+
+        // Auto-sync room occupancy purely based on student data
+        if (dataMap.students && dataMap.rooms) {
+            const occupancies = {};
+            dataMap.students.forEach((sv) => {
+                if (sv.room && sv.room !== 'Chưa xếp' && sv.status !== 'Đã rời đi') {
+                    occupancies[sv.room] = (occupancies[sv.room] || 0) + 1;
+                }
+            });
+            dataMap.rooms = dataMap.rooms.map((room) => {
+                const newOcc = occupancies[String(room.id)] || 0;
+                const newStat = room.status === 'Đang bảo trì' ? 'Đang bảo trì' :
+                                (newOcc >= room.capacity ? 'Đã đầy' : 'Còn trống');
+                return { ...room, occupied: newOcc, status: newStat };
+            });
+        }
 
         saveState({ ...defaultState, ...dataMap });
     } catch (e) {
-        console.error('Failed to load CSV datasets:', e);
+        console.warn('Failed to load datasets, keep default state.', e);
+        saveState({ ...defaultState });
     }
 }
 

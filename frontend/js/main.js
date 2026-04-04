@@ -70,6 +70,7 @@ async function loadComponents() {
         loadComponent('header-container', 'components/header.html')
     ]);
     initInteractions();
+    window.dispatchEvent(new CustomEvent('componentsLoaded'));
 }
 
 // ── UI Interactions ──

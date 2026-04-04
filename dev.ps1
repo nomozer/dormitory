@@ -15,8 +15,8 @@ function Resolve-PythonExe {
     )
 
     $candidates = @(
-        (Join-Path $RootDir ".venv\Scripts\python.exe"),
         (Join-Path $RootDir "backend\.venv\Scripts\python.exe"),
+        (Join-Path $RootDir ".venv\Scripts\python.exe"),
         "python"
     )
 
@@ -29,7 +29,7 @@ function Resolve-PythonExe {
         if (Test-Path -LiteralPath $candidate) { return $candidate }
     }
 
-    throw "Không tìm thấy Python. Hãy cài Python hoặc tạo .venv trước."
+    throw "Không tìm thấy Python. Hãy cài Python hoặc tạo backend/.venv trước."
 }
 
 function Wait-HttpReady {

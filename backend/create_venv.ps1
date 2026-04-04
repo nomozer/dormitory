@@ -1,5 +1,5 @@
 param(
-    [string]$VenvPath = ".venv"
+    [string]$VenvPath = "backend\.venv"
 )
 
 $ErrorActionPreference = "Stop"

@@ -1,9 +1,61 @@
-id,studentName,studentId,room,reason,points,date,status
-VP001,Trần Thị B,SV1002,102,Về muộn sau 23h,-5,2025-09-10,Đã giải quyết
-VP002,Nguyễn Văn A,SV1001,101,Gây ồn ào giờ nghỉ trưa,-10,2025-09-15,Đang xử lý
-VP003,Trịnh Xuân Trường,SV1010,301,Sử quyết thiết bị điện sai quy định,-15,2025-09-18,Chưa xử lý
-VP004,Phạm Thị D,SV1004,201,Mất chìa khóa phòng,-5,2025-08-30,Đã giải quyết
-VP005,Lâm Tuấn Dũng,SV1024,501,Hút thuốc trong phòng,-20,2025-09-21,Đang xử lý
-VP006,Đinh Tuấn Cảnh,SV1017,401,Cố ý làm hỏng quạt gió,-30,2025-09-22,Chưa xử lý
-VP007,Chu Bảo Nhi,SV1025,502,Bỏ trực sinh khu vực hành lang,-5,2025-09-20,Đã giải quyết
-VP008,Phạm Hùng Anh,SV1013,302,Đưa người ngoài vào KTX,-25,2025-09-19,Chưa xử lý
+id,studentId,studentName,room,reason,date,points,status
+VP1001,SV1001,Nguyễn Văn An,A101,Hút thuốc trong phòng,2026-04-01,5,Chưa xử lý
+VP1002,SV1008,Vũ Thế Hùng,A108,Làm ồn quá giờ quy định,2026-03-04,10,Đang xử lý
+VP1003,SV1015,Dương Nhật Oanh,A207,Đưa người ngoài vào,2026-02-07,15,Đã giải quyết
+VP1004,SV1022,Lưu Tú Đạt,A306,Không dọn vệ sinh,2026-01-10,20,Chưa xử lý
+VP1005,SV1029,Bạch Mỹ Thảo,A405,Nấu ăn sai quy định,2026-04-13,5,Đang xử lý
+VP1006,SV1036,Chu Ngọc Anh,A505,Xả rác bừa bãi,2026-03-16,10,Đã giải quyết
+VP1007,SV1043,Phan Hữu Minh,B104,Về trễ giờ,2026-02-19,15,Chưa xử lý
+VP1008,SV1050,Ngô Mai Bình,B203,Cố ý làm hỏng tài sản,2026-01-22,20,Đang xử lý
+VP1009,SV1057,Mai Hải Cường,B302,Hút thuốc trong phòng,2026-04-25,5,Đã giải quyết
+VP1010,SV1064,Châu Thị Trâm,B401,Làm ồn quá giờ quy định,2026-03-28,10,Chưa xử lý
+VP1011,SV1071,Quách Hoàng Khánh,B408,Đưa người ngoài vào,2026-02-03,15,Đang xử lý
+VP1012,SV1078,Huỳnh Xuân Tâm,B508,Không dọn vệ sinh,2026-01-06,20,Đã giải quyết
+VP1013,SV1085,Hồ Trọng Hương,C107,Nấu ăn sai quy định,2026-04-09,5,Chưa xử lý
+VP1014,SV1092,Hà Diệu Phúc,C206,Xả rác bừa bãi,2026-03-12,10,Đang xử lý
+VP1015,SV1099,Tôn Thanh Nhân,C305,Về trễ giờ,2026-02-15,15,Đã giải quyết
+VP1016,SV1106,Mạc Đức Linh,C404,Cố ý làm hỏng tài sản,2026-01-18,20,Chưa xử lý
+VP1017,SV1113,Hoàng Anh Huy,C504,Hút thuốc trong phòng,2026-04-21,5,Đang xử lý
+VP1018,SV1120,Đỗ Hồng Quân,D103,Làm ồn quá giờ quy định,2026-03-24,10,Đã giải quyết
+VP1019,SV1127,Đoàn Quang Lộc,D202,Đưa người ngoài vào,2026-02-27,15,Chưa xử lý
+VP1020,SV1134,Trương Thành Sơn,D301,Không dọn vệ sinh,2026-01-02,20,Đang xử lý
+VP1021,SV1141,Nghiêm Kim My,D308,Nấu ăn sai quy định,2026-04-05,5,Đã giải quyết
+VP1022,SV1148,Phạm Đình Khoa,D407,Xả rác bừa bãi,2026-03-08,10,Chưa xử lý
+VP1023,SV1155,Bùi Bích Dũng,D507,Về trễ giờ,2026-02-11,15,Đang xử lý
+VP1024,SV1162,Đào Bảo Tài,A106,Cố ý làm hỏng tài sản,2026-01-14,20,Đã giải quyết
+VP1025,SV1169,Trịnh Gia Tùng,A205,Hút thuốc trong phòng,2026-04-17,5,Chưa xử lý
+VP1026,SV1176,Phùng Tuấn Nam,A304,Làm ồn quá giờ quy định,2026-03-20,10,Đang xử lý
+VP1027,SV1183,Lê Thúy Thắng,A403,Đưa người ngoài vào,2026-02-23,15,Đã giải quyết
+VP1028,SV1190,Đặng Minh Tiến,A503,Không dọn vệ sinh,2026-01-26,20,Chưa xử lý
+VP1029,SV1197,Đinh Thu Sang,B102,Nấu ăn sai quy định,2026-04-01,5,Đang xử lý
+VP1030,SV1204,Cao Lan Việt,B201,Xả rác bừa bãi,2026-03-04,10,Đã giải quyết
+VP1031,SV1211,Khương Khắc Trang,B208,Về trễ giờ,2026-02-07,15,Chưa xử lý
+VP1032,SV1218,Trần Văn Tường,B307,Cố ý làm hỏng tài sản,2026-01-10,20,Đang xử lý
+VP1033,SV1225,Võ Thế Lâm,B406,Hút thuốc trong phòng,2026-04-13,5,Đã giải quyết
+VP1034,SV1232,Lý Nhật Hiếu,B506,Làm ồn quá giờ quy định,2026-03-16,10,Chưa xử lý
+VP1035,SV1239,Lâm Tú An,C105,Đưa người ngoài vào,2026-02-19,15,Đang xử lý
+VP1036,SV1246,Kiều Mỹ Hùng,C204,Không dọn vệ sinh,2026-01-22,20,Đã giải quyết
+VP1037,SV1253,Nguyễn Ngọc Oanh,C303,Nấu ăn sai quy định,2026-04-25,5,Chưa xử lý
+VP1038,SV1260,Vũ Hữu Đạt,C402,Xả rác bừa bãi,2026-03-28,10,Đang xử lý
+VP1039,SV1267,Dương Mai Thảo,C502,Về trễ giờ,2026-02-03,15,Đã giải quyết
+VP1040,SV1274,Lưu Hải Anh,D101,Cố ý làm hỏng tài sản,2026-01-06,20,Chưa xử lý
+VP1041,SV1281,Bạch Thị Minh,D108,Hút thuốc trong phòng,2026-04-09,5,Đang xử lý
+VP1042,SV1288,Chu Hoàng Bình,D207,Làm ồn quá giờ quy định,2026-03-12,10,Đã giải quyết
+VP1043,SV1295,Phan Xuân Cường,D306,Đưa người ngoài vào,2026-02-15,15,Chưa xử lý
+VP1044,SV1302,Ngô Trọng Trâm,D405,Không dọn vệ sinh,2026-01-18,20,Đang xử lý
+VP1045,SV1309,Mai Diệu Khánh,D505,Nấu ăn sai quy định,2026-04-21,5,Đã giải quyết
+VP1046,SV1317,Bạch Bảo Huy,A105,Xả rác bừa bãi,2026-03-24,10,Chưa xử lý
+VP1047,SV1326,Trần Xuân Tiến,A206,Về trễ giờ,2026-02-27,15,Đang xử lý
+VP1048,SV1335,Bùi Khắc Thảo,A307,Cố ý làm hỏng tài sản,2026-01-02,20,Đã giải quyết
+VP1049,SV1345,Mai Minh My,A502,Hút thuốc trong phòng,2026-04-05,5,Chưa xử lý
+VP1050,SV1354,Kiều Đức Tường,B103,Làm ồn quá giờ quy định,2026-03-08,10,Đang xử lý
+VP1051,SV1364,Phạm Trọng Phúc,B205,Đưa người ngoài vào,2026-02-11,15,Đã giải quyết
+VP1052,SV1373,Hồ Văn Tùng,B306,Không dọn vệ sinh,2026-01-14,20,Chưa xử lý
+VP1053,SV1382,Lưu Thành Hùng,B407,Nấu ăn sai quy định,2026-04-17,5,Đang xử lý
+VP1054,SV1392,Phùng Anh Quân,C102,Xả rác bừa bãi,2026-03-20,10,Đã giải quyết
+VP1055,SV1401,Hoàng Mỹ Sang,C203,Về trễ giờ,2026-02-23,15,Chưa xử lý
+VP1056,SV1411,Dương Thế Khánh,C305,Cố ý làm hỏng tài sản,2026-01-26,20,Đang xử lý
+VP1057,SV1420,Cao Kim Khoa,C406,Hút thuốc trong phòng,2026-04-01,5,Đã giải quyết
+VP1058,SV1430,Mạc Hồng Đạt,D101,Làm ồn quá giờ quy định,2026-03-04,10,Chưa xử lý
+VP1059,SV1439,Phan Ngọc Nhân,D202,Đưa người ngoài vào,2026-02-07,15,Đang xử lý
+VP1060,SV1448,Lý Gia Nam,D303,Không dọn vệ sinh,2026-01-10,20,Đã giải quyết

@@ -19,7 +19,7 @@ const syncRoomOccupancy = (students, rooms) => {
     const countMap = {};
     students.forEach((sv) => {
         const r = String(sv.room || '');
-        if (r && r !== 'Chưa xếp') {
+        if (r && r !== 'Chưa xếp' && sv.status !== 'Đã rời đi') {
             countMap[r] = (countMap[r] || 0) + 1;
         }
     });
@@ -389,6 +389,62 @@ export function setupEventListeners() {
         });
     }
 
+    // Auto assign students to rooms
+    const autoAssignBtn = document.getElementById('auto-assign-btn');
+    if (autoAssignBtn) {
+        autoAssignBtn.addEventListener('click', async () => {
+            const state = getState();
+            const studentsToAssign = state.students.filter((s) => s.room === 'Chưa xếp' && s.status !== 'Đã rời đi');
+
+            if (studentsToAssign.length === 0) {
+                showToast('Hệ thống không có sinh viên nào đang chờ xếp phòng.', 'warn');
+                return;
+            }
+
+            const confirmed = await showConfirm(
+                'Xếp phòng tự động',
+                `Bạn có muốn hệ thống tự động tìm và xếp phòng cho ${studentsToAssign.length} sinh viên đang vào danh sách chờ không?`,
+                false
+            );
+
+            if (!confirmed) return;
+
+            const currentOccupancy = {};
+            state.students.forEach((sv) => {
+                if (sv.room && sv.room !== 'Chưa xếp' && sv.status !== 'Đã rời đi') {
+                    currentOccupancy[sv.room] = (currentOccupancy[sv.room] || 0) + 1;
+                }
+            });
+
+            let assignedCount = 0;
+            const newStudentsList = state.students.map((sv) => {
+                if (sv.room === 'Chưa xếp' && sv.status !== 'Đã rời đi') {
+                    // Cố gắng tìm phòng trống hợp lệ
+                    const availableRoom = state.rooms.find((r) => 
+                        r.status !== 'Đang bảo trì' && 
+                        (currentOccupancy[String(r.id)] || 0) < r.capacity
+                    );
+                    
+                    if (availableRoom) {
+                        currentOccupancy[String(availableRoom.id)] = (currentOccupancy[String(availableRoom.id)] || 0) + 1;
+                        assignedCount++;
+                        return { ...sv, room: availableRoom.id, status: 'Đang ở' };
+                    }
+                }
+                return sv;
+            });
+
+            if (assignedCount > 0) {
+                const newRoomsList = syncRoomOccupancy(newStudentsList, state.rooms);
+                updateState({ students: newStudentsList, rooms: newRoomsList });
+                populateFilterDropdowns();
+                showToast(`Đã tự động xếp phòng thành công cho ${assignedCount} sinh viên!`, 'success');
+            } else {
+                showToast('Không thể xếp: Các phòng đã đầy hoặc đang bảo trì.', 'error');
+            }
+        });
+    }
+
     // Table interactions (edit, delete, status change, clear filters)
     const tbody = document.getElementById('students-table-body');
     if (tbody) {
@@ -488,9 +544,13 @@ export function setupEventListeners() {
                 const id = statusSelect.dataset.id;
                 const val = statusSelect.value;
                 const state = getState();
-                updateState({
-                    students: state.students.map((s) => s.id === id ? { ...s, status: val } : s)
-                });
+                const updatedStudents = state.students.map((s) =>
+                    s.id === id
+                        ? { ...s, status: val, room: val === 'Đã rời đi' ? 'Chưa xếp' : s.room }
+                        : s
+                );
+                const updatedRooms = syncRoomOccupancy(updatedStudents, state.rooms);
+                updateState({ students: updatedStudents, rooms: updatedRooms });
                 showToast('Đã cập nhật trạng thái cư trú', 'success');
             }
         });
