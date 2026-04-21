@@ -92,7 +92,8 @@ $env:DORM_BACKEND_PORT = "$BackendPort"
 
 $backendArgs = @(
     "-ExecutionPolicy", "Bypass",
-    "-File", (Join-Path $root "backend\run_backend.ps1")
+    "-File", (Join-Path $root "backend\manage.ps1"),
+    "run"
 )
 
 $frontendArgs = @(

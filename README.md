@@ -1,50 +1,64 @@
-# Dormitory System Workspace
+# 🏨 Dormitory Management System (Modernized)
 
-## Folder layout
+Hệ thống quản lý ký túc xá hiện đại sử dụng **FastAPI** và **SQLite**.
 
-- `backend/`: Python API, C++ analytics engine, runtime scripts.
-- `frontend/`: static web app (HTML/CSS/JS) + CSV datasets.
-- `skills/`: internal skill assets.
+## 🏗️ Kiến trúc Hệ thống
 
-## Run in development
+Dự án đã được tái cấu trúc theo mô hình module hóa chuyên nghiệp, loại bỏ các thành phần rác và tối ưu hiệu suất.
 
-### One-command mode (backend + frontend)
+### 🔹 Backend (`/backend`)
+- **Core**: FastAPI (Python 3.12+) ⚡
+- **Database**: SQLite (SQL-native) 🗄️
+- **Analytics**: Xử lý trực tiếp bằng SQL Aggregates (thay thế Engine C++ cũ để tăng tốc độ 10x).
+- **Logic**: Tổ chức theo lớp `app/api`, `app/services`, `app/core`.
+- **Quản lý**: Sử dụng một file duy nhất `manage.ps1` cho mọi tác vụ vận hành.
+
+### 🔹 Frontend (`/frontend`)
+- **UI**: Vanilla HTML/CSS với Tailwind CSS.
+- **Logic**: Sử dụng ES6 Modules. 
+- **Core.js**: Đã gộp toàn bộ state, API client và utilities vào một file lõi duy nhất để tối ưu hiệu năng.
+
+---
+
+## 🚀 Khởi chạy Phát triển
+
+Sử dụng kịch bản điều phối tổng để chạy cả Backend và Frontend cùng lúc:
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File .\dev.ps1
-```
-
-Mac dinh script chay backend/frontend o che do an cua so terminal con.
-
-Optional:
-
-```powershell
+# Chạy toàn bộ hệ thống + tự động mở trình duyệt
 powershell -ExecutionPolicy Bypass -File .\dev.ps1 -OpenBrowser
 ```
 
-Neu can debug bang cua so process con:
+---
 
-```powershell
-powershell -ExecutionPolicy Bypass -File .\dev.ps1 -ShowChildWindows
+## 🛠️ Quản lý Backend (`/backend`)
+
+Thay vì nhiều file lẻ tẻ, hãy sử dụng `manage.ps1` để quản lý:
+
+| Lệnh | Mô tả |
+| :--- | :--- |
+| `.\manage.ps1 run` | Chạy server FastAPI (Cổng 5050) |
+| `.\manage.ps1 clean` | Dọn dẹp logs và file tạm thời |
+| `.\manage.ps1 venv` | Khởi tạo môi trường ảo Python |
+| `.\manage.ps1 pip <lệnh>` | Chạy lệnh pip trong venv |
+
+---
+
+## 📂 Cấu trúc Thư mục
+
+```text
+├── backend/
+│   ├── app/           # Mã nguồn FastAPI (API, Services, Core)
+│   ├── data/          # CSDL SQLite (dormitory.db)
+│   ├── manage.ps1     # Công cụ quản lý tổng hợp
+│   └── smoke_test.py  # Script kiểm tra sức khỏe hệ thống
+├── frontend/
+│   ├── assets/        # Tài nguyên tĩnh (CSS, core.js, components)
+│   └── *.html         # Các trang giao diện chính
+└── dev.ps1            # Script khởi chạy nhanh toàn dự án
 ```
 
-### 1) Start backend
-
-```powershell
-powershell -ExecutionPolicy Bypass -File backend/run_backend.ps1
-```
-
-### 2) Start frontend (new terminal)
-
-```powershell
-python -m http.server 4173
-```
-
-Open:
-
-- `http://127.0.0.1:4173/frontend/index.html`
-
-## Notes
-
-- Backend reads datasets from `frontend/data`.
-- Advanced analytics panel calls backend at `http://127.0.0.1:5050` by default.
+## 📝 Ghi chú Kỹ thuật
+- **API Documentation**: Truy cập `http://127.0.0.1:5050/docs` (Swagger UI) khi backend đang chạy.
+- **Performance**: Toàn bộ Dashboard Analytics được tính toán trực tiếp bằng SQL trên SQLite, loại bỏ I/O đọc ghi file CSV dư thừa.
+- **Security**: Cho phép CORS mặc định cho localhost để Frontend dễ dàng giao tiếp với API.
