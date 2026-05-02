@@ -7,8 +7,8 @@ Hệ thống quản lý ký túc xá hiện đại sử dụng **FastAPI** và *
 Dự án đã được tái cấu trúc theo mô hình module hóa chuyên nghiệp, loại bỏ các thành phần rác và tối ưu hiệu suất.
 
 ### Backend (`/backend`)
-- **Core**: FastAPI (Python 3.12+) ⚡
-- **Database**: SQLite (SQL-native) 🗄️
+- **Core**: FastAPI (Python 3.12+) 
+- **Database**: SQLite (SQL-native) 
 - **Analytics**: Xử lý trực tiếp bằng SQL Aggregates (thay thế Engine C++ cũ để tăng tốc độ 10x).
 - **Logic**: Tổ chức theo lớp `app/api`, `app/services`, `app/core`.
 - **Quản lý**: Sử dụng một file duy nhất `manage.ps1` cho mọi tác vụ vận hành.
